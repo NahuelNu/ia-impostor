@@ -1,5 +1,7 @@
 package impostor;
 
+import java.util.List;
+
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 
@@ -28,21 +30,23 @@ public class ImpostorEnvironment  extends Environment{
         // Create a new perception to return
         ImpostorPerception perception = new ImpostorPerception();
         
-        /*
+        
         // Get the actual position of the agent to be able to create the
         // perception
-        int row = this.getEnvironmentState().getAgentPosition()[0];
-        int col = this.getEnvironmentState().getAgentPosition()[1];
+        
+        RoomNave posAgente = this.getEnvironmentState().getPosicionAgente();
 
+		
         // Set the perception sensors
-        perception.setTopSensor(this.getTopCell(row, col));
-        perception.setLeftSensor(this.getLeftCell(row, col));
-        perception.setRightSensor(this.getRightCell(row, col));
-        perception.setBottomSensor(this.getBottomCell(row, col));
-        */
+        perception.setListPerceptions(this.getListPerceptions(posAgente));
         
         // Return the perception
+        System.out.println(perception.getListPerceptions());
         return perception;
     }
+
+	private List<Integer> getListPerceptions(RoomNave posAgente) {
+		return ( (ImpostorEnvironmentState) this.environmentState).getListPerceptions(posAgente);
+	}
 	
 }

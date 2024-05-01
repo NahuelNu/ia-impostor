@@ -20,9 +20,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	private Map<RoomNave,List<Object>> world;
 	 
 	private Integer cantTripulantesVivos;
-	private List<RoomNave> tareasASabotear;
+	//private List<RoomNave> tareasASabotear;
 	private RoomNave posicionAgente;
-	// energiaAgente ??
+	private Integer energiaAgente;
 	
 	
 	public ImpostorEnvironmentState() {
@@ -32,10 +32,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	// TODO
 	@Override
 	public void initState() {
-		// TODO Auto-generated method stub
 
-		//Iniciar mapa
-		
 		//Mapa prueba
 		
 		//variable mapa
@@ -81,6 +78,9 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		
 		System.out.println("Contenido del HashMap:");
 		System.out.println(world);
+		
+		this.posicionAgente = RoomNave.CAFETERIA;
+		this.energiaAgente = 10;
 	}
 
 	@Override
@@ -88,5 +88,16 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public RoomNave getPosicionAgente() {
+		return posicionAgente;
+	}
 
+	public void setPosicionAgente(RoomNave posicionAgente) {
+		this.posicionAgente = posicionAgente;
+	}
+
+	public List<Integer> getListPerceptions(RoomNave posAgente) {
+		return (List<Integer>) world.get(posAgente).get(1);
+	}
 }
