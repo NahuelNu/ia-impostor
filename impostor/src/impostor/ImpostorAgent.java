@@ -35,7 +35,7 @@ public class ImpostorAgent extends SearchBasedAgent{
         operators.addElement(new IrA(RoomNave.STORAGE));
 
 
-        // Create the Problem which the Pacman will resolve
+        // Create the Problem which the Impostor will resolve
         Problem problem = new Problem(goal, impostorState, operators);
         this.setProblem(problem);
 	}

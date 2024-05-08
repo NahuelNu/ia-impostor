@@ -100,11 +100,11 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	        newNave.put(room, new InfoSala(infoSala.getSalasAdyacentes(), infoSala.getCantidadTripuntalesEnSala(), infoSala.isTareaSaboteable()));
 	    }
 		
-		RoomNave newSalaActual = salaActual;
+		RoomNave newSalaActual = this.salaActual;
 		
 		//private InfoSala infoSalaActual;
-		int newCantidadTripulantes = cantidadTripulantes;
-		int newEnergiaImpostor = energiaImpostor;
+		int newCantidadTripulantes = this.cantidadTripulantes;
+		int newEnergiaImpostor = this.energiaImpostor;
 	
 		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor);
 	}
@@ -113,7 +113,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	public void updateState(Perception p) {
 		ImpostorPerception impostorPerception = (ImpostorPerception) p;
 		
-		this.nave.put(salaActual, impostorPerception.getInfoSalaActual());
+		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());
 		this.energiaImpostor = impostorPerception.getEnergiaImpostor();
 		
 	}

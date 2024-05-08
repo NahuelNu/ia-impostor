@@ -28,16 +28,20 @@ public class ImpostorPerception extends Perception{
 		super(agent, environment);
 		// TODO Auto-generated constructor stub
 	}
+	
+    /**
+     * This method is used to setup the perception.
+     */
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
-		// TODO Auto-generated method stub
 		 ImpostorAgent impostorAgent = (ImpostorAgent) agent;
 	     ImpostorEnvironment impostorEnvironment = (ImpostorEnvironment) environment;
 	     ImpostorEnvironmentState environmentState =
 	    		 impostorEnvironment.getEnvironmentState();
 	     
-	     
-	     
+	     RoomNave posImpostor = environmentState.getSalaActualImpostor();
+	     this.setInfoSalaActual(environmentState.getNave().get(posImpostor));
+	     this.setEnergiaImpostor(environmentState.getEnegiaImpostor());
 	}
 
 	public void setInfoSalaActual(InfoSala info) {
