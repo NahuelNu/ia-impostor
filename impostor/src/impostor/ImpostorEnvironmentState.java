@@ -11,14 +11,11 @@ import impostor.classes.InfoSala;
 
 public class ImpostorEnvironmentState extends EnvironmentState {
 	
-	// HashMap1: key: Ambiente, value:
-	//										HashMap2: key: AmbientesAdyacentes, value: Percepciones 
-	private Map<RoomNave, InfoSala> nave; // 
+	private Map<RoomNave, InfoSala> nave; 
 	private int cantidadTripulantes;
 	private int enegiaImpostor;
 	private RoomNave salaActualImpostor;
-	
-	// TODO
+
 	public ImpostorEnvironmentState() {
 		super();
 		initState();
@@ -89,12 +86,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		this.setEnegiaImpostor(1000);
         
 	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public Map<RoomNave, InfoSala> getNave() {
 		return nave;
@@ -127,5 +118,18 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	public void setSalaActualImpostor(RoomNave salaActualImpostor) {
 		this.salaActualImpostor = salaActualImpostor;
 	}
-
+	
+	@Override
+	public String toString() {
+		StringBuffer str = new StringBuffer();
+		
+		str.append("\n");
+		str.append("Nave: "+this.nave+"\n");
+		str.append("Sala actual impostor: "+this.salaActualImpostor+"\n");
+		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
+		str.append("Energia: "+this.enegiaImpostor+"\n");
+		
+		return str.toString();
+		
+	}
 }

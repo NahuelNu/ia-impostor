@@ -55,5 +55,15 @@ public class ImpostorPerception extends Perception{
 	public InfoSala getInfoSalaActual() {
 		return infoSalaActual;
 	}
+	
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer();
+        
+        str.append("\n");
+        str.append("Energia impostor: " + this.energiaImpostor +"\n");
+        str.append("Info sala actual: " + this.infoSalaActual+"\n");
 
+        return str.toString();
+    }
 }

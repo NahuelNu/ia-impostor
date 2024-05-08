@@ -48,5 +48,8 @@ public class ImpostorEnvironment  extends Environment{
         return perception;
     }
 
-	
+    @Override
+    public String toString() {
+        return environmentState.toString();
+    }
 }

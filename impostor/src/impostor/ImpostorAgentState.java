@@ -12,11 +12,8 @@ import impostor.classes.InfoSala;
 
 public class ImpostorAgentState extends SearchBasedAgentState{
 
-	// TODO: estado interno del impostor
 	private Map<RoomNave, InfoSala> nave;
-	
 	private RoomNave salaActual;
-	
 	//private InfoSala infoSalaActual;
 	private int cantidadTripulantes;
 	private int energiaImpostor;
@@ -114,21 +111,24 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 
 	@Override
 	public void updateState(Perception p) {
-		// TODO Auto-generated method stub
 		ImpostorPerception impostorPerception = (ImpostorPerception) p;
 		
-		System.out.println("Me update el estado agente con: " + impostorPerception.getInfoSalaActual());
 		this.nave.put(salaActual, impostorPerception.getInfoSalaActual());
-		
-		System.out.println("Nave actual después de actualizar: "+ this.nave);
 		this.energiaImpostor = impostorPerception.getEnergiaImpostor();
 		
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "hacer";
+		StringBuffer str = new StringBuffer();
+		
+		str.append("\n");
+		str.append("Nave: "+this.nave+"\n");
+		str.append("Sala actual: "+this.salaActual+"\n");
+		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
+		str.append("Energia: "+this.energiaImpostor+"\n");
+		
+		return str.toString();
 	}
 
 	@Override
