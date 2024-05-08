@@ -1,5 +1,7 @@
 package impostor;
 
+import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
+
 public class ImpostorSearchMain {
 
 	public static void main(String[] args) {
@@ -13,11 +15,10 @@ public class ImpostorSearchMain {
         // Para solo imprimir el mapa prueba
         // ImpostorEnvironmentState impostorEnvironmentPrueba= new ImpostorEnvironmentState();
         
-        /*
         SearchBasedAgentSimulator simulator =
-                new SearchBasedAgentSimulator(pacmanEnvironment, pacmanAgent);
+                new SearchBasedAgentSimulator(impostorEnvironment, impostorAgent);
         
-        simulator.start();*/
+        simulator.start();
 
 	}
 
