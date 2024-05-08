@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * 
- */
-module amongus {
-	requires faia;
-}

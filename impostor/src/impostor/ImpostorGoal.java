@@ -8,14 +8,17 @@ public class ImpostorGoal extends GoalTest{
 	@Override
     public boolean isGoalState(AgentState agentState) {
 		// TODO: Función prueba de meta
-		return true;
 		
-		
-		/*if (((PacmanAgentState) agentState).isNoMoreFood() &&
-                ((PacmanAgentState) agentState).isAllWorldKnown()) {
+		/*if (((ImpostorAgentState) agentState).isNoMoreTribulantes() &&
+                ((ImpostorAgentState) agentState).isNoMoreTareas()) {
             return true;
+        }*/
+		
+		if (((ImpostorAgentState) agentState).isNoMoreTribulantes()) {
+            System.out.println("gana %%%%%%");
+			return true;
         }
-        return false;*/
+        return false;
 		
     }
 }
