@@ -39,7 +39,8 @@ public class IrA extends SearchAction {
 		//if(!impostorState.getAmbientesAdyacentes().contains(ambiente)) return null;
 		  
 		impostorState.setSalaActual(ambiente);
-		  
+		
+		System.out.println("Se mueve a "+this.ambiente+" ############################");
 		return impostorState;
 		 
 	}
@@ -62,7 +63,8 @@ public class IrA extends SearchAction {
 		
 		environmentState.setSalaActualImpostor(ambiente);
 		impostorState.setSalaActual(ambiente);
-		  
+		 
+		System.out.println("Se mueve a "+this.ambiente+" REAL ############################");
 		return environmentState;
 		
 		

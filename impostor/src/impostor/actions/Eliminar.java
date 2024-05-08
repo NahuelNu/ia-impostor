@@ -6,6 +6,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
+import impostor.RoomNave;
 
 public class Eliminar extends SearchAction {
 
@@ -15,8 +16,12 @@ public class Eliminar extends SearchAction {
 		
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
-		if(impostorState.getNave().get(impostorState.getSalaActual()).getCantidadTripuntalesEnSala()==1) {
+		 RoomNave posActual = impostorState.getSalaActual();
+		 
+		if(impostorState.getNave().get(posActual).getCantidadTripuntalesEnSala()==1) {
+			
 			impostorState.getNave().get(impostorState.getSalaActual()).setCantidadTripuntalesEnSala(0);
+			
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
 			System.out.println("ELIMINA 1 ############################");
@@ -39,8 +44,10 @@ public class Eliminar extends SearchAction {
 		ImpostorAgentState impostorState = (ImpostorAgentState) ast;
 		ImpostorEnvironmentState enviromentState = (ImpostorEnvironmentState) est;
 
+		RoomNave posActual = enviromentState.getSalaActualImpostor();
 		
-		if(enviromentState.getNave().get(impostorState.getSalaActual()).getCantidadTripuntalesEnSala()==1) {
+		if(enviromentState.getNave().get(posActual).getCantidadTripuntalesEnSala()==1) {
+			
 			enviromentState.getNave().get(impostorState.getSalaActual()).setCantidadTripuntalesEnSala(0);
 			impostorState.getNave().get(impostorState.getSalaActual()).setCantidadTripuntalesEnSala(0);
 			

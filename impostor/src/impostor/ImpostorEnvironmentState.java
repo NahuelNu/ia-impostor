@@ -128,11 +128,4 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		this.salaActualImpostor = salaActualImpostor;
 	}
 
-	public void setPosicionAgente(RoomNave posicionAgente) {
-		this.posicionAgente = posicionAgente;
-	}
-
-	public List<Integer> getListPerceptions(RoomNave posAgente) {
-		return (List<Integer>) world.get(posAgente).get(1);
-	}
 }

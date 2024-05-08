@@ -117,7 +117,10 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		// TODO Auto-generated method stub
 		ImpostorPerception impostorPerception = (ImpostorPerception) p;
 		
+		System.out.println("Me update el estado agente con: " + impostorPerception.getInfoSalaActual());
 		this.nave.put(salaActual, impostorPerception.getInfoSalaActual());
+		
+		System.out.println("Nave actual después de actualizar: "+ this.nave);
 		this.energiaImpostor = impostorPerception.getEnergiaImpostor();
 		
 	}

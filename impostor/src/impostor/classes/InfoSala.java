@@ -53,6 +53,18 @@ public class InfoSala {
 		return cantidadTripuntalesEnSala == other.cantidadTripuntalesEnSala && tareaSaboteable == other.tareaSaboteable;
 	}
 	
-	
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer();
+
+        str.append("Salas adyacentes: " + this.salasAdyacentes);
+        str.append("; ");
+        str.append("Cantidad Tripuntales En Sala: " + this.cantidadTripuntalesEnSala);
+        str.append("; ");
+        str.append("Tarea Saboteable: " + this.tareaSaboteable);
+
+
+        return str.toString();
+    }
 	
 }

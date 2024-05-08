@@ -17,21 +17,11 @@ public class ImpostorPerception extends Perception{
     public static int TASK_PERCEPTION = 2;
     
     private InfoSala infoSalaActual;
-    
     private int energiaImpostor;
     
     public ImpostorPerception() {
     	
     }
-
-	public void setListPerceptions(List<Integer> listPerceptions) {
-		this.listPerceptions = listPerceptions;
-	}
-
-
-
-
-
 
 	// Estos 2 metodos no se usan nunca en el ejemplo de pacman
 	public ImpostorPerception(Agent agent, Environment environment) {
@@ -41,7 +31,7 @@ public class ImpostorPerception extends Perception{
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
 		// TODO Auto-generated method stub
-		 ImpostorAgent imspostorAgent = (ImpostorAgent) agent;
+		 ImpostorAgent impostorAgent = (ImpostorAgent) agent;
 	     ImpostorEnvironment impostorEnvironment = (ImpostorEnvironment) environment;
 	     ImpostorEnvironmentState environmentState =
 	    		 impostorEnvironment.getEnvironmentState();
