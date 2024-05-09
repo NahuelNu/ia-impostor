@@ -10,6 +10,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
 import impostor.RoomNave;
+import impostor.classes.InfoSala;
 
 public class IrA extends SearchAction {
 	
@@ -40,7 +41,14 @@ public class IrA extends SearchAction {
 		  
 		impostorState.setSalaActual(ambiente);
 		
-		System.out.println("Se mueve a "+this.ambiente+" ############################");
+		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
+			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
+			impostorState.getNave().put(posAgente, infoSalaNew);
+		}
+		
+		if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
+		
+		//System.out.println("Se mueve a "+this.ambiente+" ############################");
 		return impostorState;
 		 
 	}
@@ -64,7 +72,7 @@ public class IrA extends SearchAction {
 		environmentState.setSalaActualImpostor(ambiente);
 		impostorState.setSalaActual(ambiente);
 		 
-		System.out.println("Se mueve a "+this.ambiente+" REAL ############################");
+		//System.out.println("Se mueve a "+this.ambiente+" REAL ############################");
 		return environmentState;
 		
 		
@@ -78,6 +86,6 @@ public class IrA extends SearchAction {
 
 	@Override
 	public String toString() {
-		return "Se mueve a " + this.ambiente;
+		return "SeMueveA" + this.ambiente;
 	}
 }

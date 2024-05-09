@@ -13,6 +13,7 @@ import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 import impostor.actions.Eliminar;
 import impostor.actions.IrA;
+import impostor.actions.NoMove;
 
 
 public class ImpostorAgent extends SearchBasedAgent{
@@ -33,6 +34,10 @@ public class ImpostorAgent extends SearchBasedAgent{
         operators.addElement(new IrA(RoomNave.WEAPONS));
         operators.addElement(new IrA(RoomNave.SHIELDS));
         operators.addElement(new IrA(RoomNave.STORAGE));
+        operators.addElement(new IrA(RoomNave.O2));
+        operators.addElement(new IrA(RoomNave.NAVIGATION));
+        operators.addElement(new IrA(RoomNave.COMMUNICATION));
+        operators.addElement(new NoMove());
 
 
         // Create the Problem which the Impostor will resolve

@@ -15,7 +15,6 @@ public class ImpostorGoal extends GoalTest{
         }*/
 		
 		if (((ImpostorAgentState) agentState).isNoMoreTribulantes()) {
-            System.out.println("gana %%%%%%");
 			return true;
         }
         return false;

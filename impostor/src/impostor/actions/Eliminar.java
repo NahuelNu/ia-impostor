@@ -24,7 +24,7 @@ public class Eliminar extends SearchAction {
 			
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
-			System.out.println("ELIMINA 1 ############################");
+			// System.out.println("ELIMINA 1 ############################");
 			
 			return impostorState;
 		}
@@ -55,7 +55,7 @@ public class Eliminar extends SearchAction {
 			
 			enviromentState.setCantidadTripulantes(aux-1);
 			impostorState.setCantidadTripulantes(aux-1);
-			System.out.println("ELIMINA 1 REAL ############################");
+			//System.out.println("ELIMINA 1 REAL ############################");
 			return enviromentState;
 		}
 		
@@ -64,7 +64,7 @@ public class Eliminar extends SearchAction {
 
 	@Override
 	public String toString() {
-		return "Elimina 1 tripulante";
+		return "Elimina";
 	}
 
 }
