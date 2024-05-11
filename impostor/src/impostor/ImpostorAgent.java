@@ -37,6 +37,12 @@ public class ImpostorAgent extends SearchBasedAgent{
         operators.addElement(new IrA(RoomNave.O2));
         operators.addElement(new IrA(RoomNave.NAVIGATION));
         operators.addElement(new IrA(RoomNave.COMMUNICATION));
+      //operators.addElement(new IrA(RoomNave.ADMIN));
+        operators.addElement(new IrA(RoomNave.LOWER_ENGINE));
+        operators.addElement(new IrA(RoomNave.REACTOR));
+        operators.addElement(new IrA(RoomNave.SECURITY));
+        operators.addElement(new IrA(RoomNave.UPPER_ENGINE));
+        operators.addElement(new IrA(RoomNave.MEDBAY));
         operators.addElement(new NoMove());
 
 

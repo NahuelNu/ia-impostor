@@ -17,13 +17,14 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	//private InfoSala infoSalaActual;
 	private int cantidadTripulantes;
 	private int energiaImpostor;
-	
+	private int cantidadTareas;
 	
 	public ImpostorAgentState() {
 		super();
 		this.salaActual = RoomNave.CAFETERIA;
 		this.energiaImpostor = 1000;
 		this.cantidadTripulantes = 2;
+		this.cantidadTareas = 3;
         initState();
     }
 	
@@ -140,8 +141,8 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		//iniciar nave, salas y detalles de cada una
 		List<RoomNave> adyacentesCafeteria = new ArrayList<RoomNave>();
 		adyacentesCafeteria.add(RoomNave.WEAPONS);
-		//adyacentesCafeteria.add(RoomNave.UPPER_ENGINE);
-		//adyacentesCafeteria.add(RoomNave.MEDBAY);
+		adyacentesCafeteria.add(RoomNave.UPPER_ENGINE);
+		adyacentesCafeteria.add(RoomNave.MEDBAY);
 		//adyacentesCafeteria.add(RoomNave.ADMIN);
 		adyacentesCafeteria.add(RoomNave.STORAGE);
 		nave.put(RoomNave.CAFETERIA, new InfoSala(adyacentesCafeteria, -1, false));
@@ -181,12 +182,55 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		List<RoomNave> adyacentesStorage = new ArrayList<RoomNave>();
 		adyacentesStorage.add(RoomNave.CAFETERIA);
 		//adyacentesStorage.add(RoomNave.ADMIN);
-		//adyacentesStorage.add(RoomNave.ELECTRICAL);
+		adyacentesStorage.add(RoomNave.ELECTRICAL);
 		adyacentesStorage.add(RoomNave.COMMUNICATION);
 		adyacentesStorage.add(RoomNave.SHIELDS);
-		//adyacentesStorage.add(RoomNave.LOWER_ENGINE);
+		adyacentesStorage.add(RoomNave.LOWER_ENGINE);
 		nave.put(RoomNave.STORAGE, new InfoSala(adyacentesStorage, -1, false));
 		
+		List<RoomNave> adyacentesElectrical = new ArrayList<RoomNave>();
+		adyacentesElectrical.add(RoomNave.STORAGE);
+		adyacentesElectrical.add(RoomNave.LOWER_ENGINE);
+		nave.put(RoomNave.ELECTRICAL, new InfoSala(adyacentesElectrical, -1, false));
+		
+		List<RoomNave> adyacentesLowerEngine = new ArrayList<RoomNave>();
+		adyacentesLowerEngine.add(RoomNave.STORAGE);
+		adyacentesLowerEngine.add(RoomNave.ELECTRICAL);
+		adyacentesLowerEngine.add(RoomNave.REACTOR);
+		adyacentesLowerEngine.add(RoomNave.SECURITY);
+		adyacentesLowerEngine.add(RoomNave.UPPER_ENGINE);
+		nave.put(RoomNave.LOWER_ENGINE, new InfoSala(adyacentesLowerEngine, -1, false));
+		
+		List<RoomNave> adyacentesReactor = new ArrayList<RoomNave>();
+		adyacentesReactor.add(RoomNave.LOWER_ENGINE);
+		adyacentesReactor.add(RoomNave.SECURITY);
+		adyacentesReactor.add(RoomNave.UPPER_ENGINE);
+		nave.put(RoomNave.REACTOR, new InfoSala(adyacentesReactor, -1, false));
+		
+		List<RoomNave> adyacentesSecurity = new ArrayList<RoomNave>();
+		adyacentesSecurity.add(RoomNave.LOWER_ENGINE);
+		adyacentesSecurity.add(RoomNave.REACTOR);
+		adyacentesSecurity.add(RoomNave.UPPER_ENGINE);
+		nave.put(RoomNave.SECURITY, new InfoSala(adyacentesSecurity, -1, false));
+		
+		List<RoomNave> adyacentesUpperEngine = new ArrayList<RoomNave>();
+		adyacentesUpperEngine.add(RoomNave.LOWER_ENGINE);
+		adyacentesUpperEngine.add(RoomNave.REACTOR);
+		adyacentesUpperEngine.add(RoomNave.SECURITY);
+		adyacentesUpperEngine.add(RoomNave.MEDBAY);
+		adyacentesUpperEngine.add(RoomNave.CAFETERIA);
+		nave.put(RoomNave.UPPER_ENGINE, new InfoSala(adyacentesUpperEngine, -1, false));
+		
+		List<RoomNave> adyacentesMedbay= new ArrayList<RoomNave>();
+		adyacentesMedbay.add(RoomNave.UPPER_ENGINE);
+		adyacentesMedbay.add(RoomNave.CAFETERIA);
+		nave.put(RoomNave.MEDBAY, new InfoSala(adyacentesMedbay, -1, false));
+		
+		/*List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
+		adyacentesAdmin.add(RoomNave.CAFETERIA);
+		adyacentesAdmin.add(RoomNave.STORAGE);
+		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, -1, false));
+		*/
 	}
 
 	public boolean isNoMoreTribulantes() {
