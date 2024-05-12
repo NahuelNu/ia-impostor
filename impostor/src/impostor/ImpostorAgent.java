@@ -14,6 +14,7 @@ import frsf.cidisi.faia.solver.search.Search;
 import impostor.actions.Eliminar;
 import impostor.actions.IrA;
 import impostor.actions.NoMove;
+import impostor.actions.Sabotear;
 
 
 public class ImpostorAgent extends SearchBasedAgent{
@@ -30,6 +31,7 @@ public class ImpostorAgent extends SearchBasedAgent{
 		
         Vector<SearchAction> operators = new Vector<SearchAction>();
         operators.addElement(new Eliminar());
+        operators.addElement(new Sabotear());
         operators.addElement(new IrA(RoomNave.WEAPONS));
         operators.addElement(new IrA(RoomNave.SHIELDS));
         operators.addElement(new IrA(RoomNave.O2));

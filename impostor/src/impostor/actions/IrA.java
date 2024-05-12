@@ -80,6 +80,13 @@ public class IrA extends SearchAction {
 		
 		if(!ambientesAdyacentes.contains(ambiente)) return null;
 		
+		
+		// Esto hace falta en este .execute() ???
+		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
+			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
+			impostorState.getNave().put(posAgente, infoSalaNew);
+		}
+		
 		environmentState.setSalaActualImpostor(ambiente);
 		impostorState.setSalaActual(ambiente);
 		 

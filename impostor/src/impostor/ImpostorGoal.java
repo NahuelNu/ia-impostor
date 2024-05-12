@@ -9,12 +9,9 @@ public class ImpostorGoal extends GoalTest{
     public boolean isGoalState(AgentState agentState) {
 		// TODO: Función prueba de meta
 		
-		/*if (((ImpostorAgentState) agentState).isNoMoreTribulantes() &&
-                ((ImpostorAgentState) agentState).isNoMoreTareas()) {
-            return true;
-        }*/
 		
-		if (((ImpostorAgentState) agentState).isNoMoreTribulantes()) {
+		if (	((ImpostorAgentState) agentState).isNoMoreTribulantes() && 
+				((ImpostorAgentState) agentState).isNoMoreTareas()	) {
 			return true;
         }
         return false;

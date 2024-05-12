@@ -17,7 +17,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	//private InfoSala infoSalaActual;
 	private int cantidadTripulantes;
 	private int energiaImpostor;
-	//private int cantidadTareas;
+	private int cantidadTareas;
 	
 	// Utilizados en búsqueda para que puedan pasar por estas salas solo 2 veces
 	private int pasosPorCafeteria;
@@ -31,7 +31,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		this.salaActual = RoomNave.CAFETERIA;
 		this.energiaImpostor = 1000;
 		this.cantidadTripulantes = 4;
-		//this.cantidadTareas = 3;
+		this.cantidadTareas = 3;
 		this.pasosPorCafeteria=0;
 		this.pasosPorStorage=0;
 		this.noMove=false;
@@ -138,7 +138,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	}
 	
 	public ImpostorAgentState(Map<RoomNave, InfoSala> nave, RoomNave salaActual, int cantidadTripulantes,
-			int energiaImpostor, int pasosPorCaf, int pasosPorSto, boolean noMove) {
+			int energiaImpostor, int pasosPorCaf, int pasosPorSto, boolean noMove, int cantidadTareas) {
 		super();
 		this.nave = nave;
 		this.salaActual = salaActual;
@@ -147,6 +147,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		this.pasosPorCafeteria=pasosPorCaf;
 		this.pasosPorStorage=pasosPorSto;
 		this.noMove = noMove;
+		this.cantidadTareas= cantidadTareas;
 	}
 
 	@Override
@@ -177,6 +178,8 @@ public class ImpostorAgentState extends SearchBasedAgentState{
         if(cantidadTripulantes != ((ImpostorAgentState) obj).getCantidadTripulantes()) {
         	return false;
         }
+        
+        if(this.cantidadTareas != ((ImpostorAgentState) obj).getCantidadTareas()) return false;
         
 		if(this.pasosPorCafeteria != ((ImpostorAgentState) obj).getPasosPorCafeteria()) return false;
 		if(this.pasosPorStorage != ((ImpostorAgentState) obj).getPasosPorStorage()) return false;
@@ -216,11 +219,12 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		
 		int newCantidadTripulantes = this.cantidadTripulantes;
 		int newEnergiaImpostor = this.energiaImpostor;
+		int newCantidadTareas = this.cantidadTareas;
 		int newPasosPorCaf = this.pasosPorCafeteria;
 		int newPasosPorSto = this.pasosPorStorage;
 		boolean newNoMove = this.noMove;
 	
-		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor,newPasosPorCaf, newPasosPorSto,newNoMove);
+		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor,newPasosPorCaf, newPasosPorSto,newNoMove, newCantidadTareas);
 	}
 
 	@Override
@@ -231,6 +235,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		str.append("Nave: "+this.nave+"\n");
 		str.append("Sala actual: "+this.salaActual+"\n");
 		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
+		str.append("Cantidad de tareas restantes a sabotear: "+this.cantidadTareas+"\n");
 		str.append("Energia: "+this.energiaImpostor+"\n");
 		
 		return str.toString();
@@ -253,7 +258,15 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 
 	public boolean isNoMoreTareas() {
 		
-		return false;
+		if(cantidadTareas == 0) {
+			return true;
+		}
+		for (RoomNave clave : this.nave.keySet()) {
+            InfoSala valor = this.nave.get(clave);
+            if(valor.isTareaSaboteable()) return false;
+        }
+		
+		return true;
 	}
 
 	public Map<RoomNave, InfoSala> getNave() {
@@ -310,6 +323,14 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 
 	public void setNoMove(boolean noMove) {
 		this.noMove = noMove;
+	}
+
+	public int getCantidadTareas() {
+		return cantidadTareas;
+	}
+
+	public void setCantidadTareas(int cantidadTareas) {
+		this.cantidadTareas = cantidadTareas;
 	}
 
 	

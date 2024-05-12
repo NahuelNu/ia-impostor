@@ -9,12 +9,6 @@ import frsf.cidisi.faia.environment.Environment;
 import impostor.classes.InfoSala;
 
 public class ImpostorPerception extends Perception{
-	
-//	public static int UNKNOWN_PERCEPTION = -1;
-//    public static int EMPTY_PERCEPTION = 0;
-//    public static int CREWMATE_PERCEPTION = 1;
-//    public static int MULTIPLE_CREWMATES_PERCEPTION = 2;
-//    public static int TASK_PERCEPTION = 2;
     
     private InfoSala infoSalaActual;
     //private int energiaImpostor;
@@ -42,6 +36,8 @@ public class ImpostorPerception extends Perception{
 	     RoomNave posImpostor = environmentState.getSalaActualImpostor();
 	     this.setInfoSalaActual(environmentState.getNave().get(posImpostor));
 	     //this.setEnergiaImpostor(environmentState.getEnegiaImpostor());
+	     
+	     System.out.println("------------INITPERCEPTION ESTO NO SE EJECUTA NUNCA----------");
 	}
 
 	public void setInfoSalaActual(InfoSala info) {

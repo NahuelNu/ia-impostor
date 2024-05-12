@@ -14,7 +14,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	private int cantidadTripulantes;
 	private int enegiaImpostor;
 	private RoomNave salaActualImpostor;
-	//private int cantidadTareas;
+	private int cantidadTareas;
 
 	public ImpostorEnvironmentState() {
 		super();
@@ -25,7 +25,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	public void initState() {
 		//cantidad de tripulantes al inicio:
 		cantidadTripulantes = 4;
-		//cantidadTareas = 3;
+		cantidadTareas = 3;
 		nave =  new HashMap<RoomNave, InfoSala>();
 		
 		//iniciar nave, salas y detalles de cada una
@@ -160,6 +160,15 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		this.salaActualImpostor = salaActualImpostor;
 	}
 	
+	
+	public int getCantidadTareas() {
+		return cantidadTareas;
+	}
+
+	public void setCantidadTareas(int cantidadTareas) {
+		this.cantidadTareas = cantidadTareas;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer str = new StringBuffer();
