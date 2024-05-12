@@ -17,125 +17,29 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	//private InfoSala infoSalaActual;
 	private int cantidadTripulantes;
 	private int energiaImpostor;
-	private int cantidadTareas;
+	//private int cantidadTareas;
+	
+	// Utilizados en búsqueda para que puedan pasar por estas salas solo 2 veces
+	private int pasosPorCafeteria;
+	private int pasosPorStorage;
+	
+	// Utilizado en búsqueda para que pueda realizar la acción NoMove solo 1 vez
+	private boolean noMove;
 	
 	public ImpostorAgentState() {
 		super();
 		this.salaActual = RoomNave.CAFETERIA;
 		this.energiaImpostor = 1000;
-		this.cantidadTripulantes = 2;
-		this.cantidadTareas = 3;
+		this.cantidadTripulantes = 4;
+		//this.cantidadTareas = 3;
+		this.pasosPorCafeteria=0;
+		this.pasosPorStorage=0;
+		this.noMove=false;
         initState();
     }
 	
-	public ImpostorAgentState(Map<RoomNave, InfoSala> nave, RoomNave salaActual, int cantidadTripulantes,
-			int energiaImpostor) {
-		super();
-		this.nave = nave;
-		this.salaActual = salaActual;
-		this.cantidadTripulantes = cantidadTripulantes;
-		this.energiaImpostor = energiaImpostor;
-	}
-
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof ImpostorAgentState))
-            return false;
-
-		if (salaActual != ((ImpostorAgentState) obj).getSalaActual()) {
-            return false;
-        }
-        
-        if(energiaImpostor != ((ImpostorAgentState) obj).getEnergiaImpostor()) {
-        	return false;
-        }
-        
-        if(cantidadTripulantes != ((ImpostorAgentState) obj).getCantidadTripulantes()) {
-        	return false;
-        }
-		
-		Map<RoomNave, InfoSala> naveObj = ((ImpostorAgentState) obj).getNave();
-
-		if(naveObj.size() != this.nave.size()) {
-			return false;
-		}
-		
-        for (Map.Entry<RoomNave, InfoSala> entry : nave.entrySet()) {
-	        RoomNave room = entry.getKey();
-	        //InfoSala infoSala = entry.getValue();
-	        if(!naveObj.containsKey(room)){
-	        	return false;
-	        }
-	        InfoSala infoSala = entry.getValue();
-	        if(!infoSala.equals(naveObj.get(room))){
-	        	return false;
-	        } 
-	    }
-
-        if (salaActual != ((ImpostorAgentState) obj).getSalaActual()) {
-            return false;
-        }
-        
-        if(energiaImpostor != ((ImpostorAgentState) obj).getEnergiaImpostor()) {
-        	return false;
-        }
-        
-        if(cantidadTripulantes != ((ImpostorAgentState) obj).getCantidadTripulantes()) {
-        	return false;
-        }
-        
-        return true;
-	}
-
-	@Override
-	public SearchBasedAgentState clone() {
-		// TODO Auto-generated method stub
-		Map<RoomNave, InfoSala> newNave = new HashMap<RoomNave, InfoSala>();
-		
-		for (Map.Entry<RoomNave, InfoSala> entry : nave.entrySet()) {
-	        RoomNave room = entry.getKey();
-	        InfoSala infoSala = entry.getValue();
-	        newNave.put(room, new InfoSala(infoSala.getSalasAdyacentes(), infoSala.getCantidadTripuntalesEnSala(), infoSala.isTareaSaboteable()));
-	    }
-		
-		RoomNave newSalaActual = this.salaActual;
-		
-		//private InfoSala infoSalaActual;
-		int newCantidadTripulantes = this.cantidadTripulantes;
-		int newEnergiaImpostor = this.energiaImpostor;
-	
-		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor);
-	}
-
-	@Override
-	public void updateState(Perception p) {
-		ImpostorPerception impostorPerception = (ImpostorPerception) p;
-		
-		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());
-		this.energiaImpostor = impostorPerception.getEnergiaImpostor();
-		
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer str = new StringBuffer();
-		
-		str.append("\n");
-		str.append("Nave: "+this.nave+"\n");
-		str.append("Sala actual: "+this.salaActual+"\n");
-		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
-		str.append("Energia: "+this.energiaImpostor+"\n");
-		
-		return str.toString();
-	}
-
 	@Override
 	public void initState() {
-		// TODO Auto-generated method stub
-
 		this.nave = new HashMap<RoomNave, InfoSala>();
 		
 		//iniciar nave, salas y detalles de cada una
@@ -143,7 +47,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		adyacentesCafeteria.add(RoomNave.WEAPONS);
 		adyacentesCafeteria.add(RoomNave.UPPER_ENGINE);
 		adyacentesCafeteria.add(RoomNave.MEDBAY);
-		//adyacentesCafeteria.add(RoomNave.ADMIN);
+		adyacentesCafeteria.add(RoomNave.ADMIN);
 		adyacentesCafeteria.add(RoomNave.STORAGE);
 		nave.put(RoomNave.CAFETERIA, new InfoSala(adyacentesCafeteria, -1, false));
 		
@@ -181,7 +85,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		
 		List<RoomNave> adyacentesStorage = new ArrayList<RoomNave>();
 		adyacentesStorage.add(RoomNave.CAFETERIA);
-		//adyacentesStorage.add(RoomNave.ADMIN);
+		adyacentesStorage.add(RoomNave.ADMIN);
 		adyacentesStorage.add(RoomNave.ELECTRICAL);
 		adyacentesStorage.add(RoomNave.COMMUNICATION);
 		adyacentesStorage.add(RoomNave.SHIELDS);
@@ -226,12 +130,112 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		adyacentesMedbay.add(RoomNave.CAFETERIA);
 		nave.put(RoomNave.MEDBAY, new InfoSala(adyacentesMedbay, -1, false));
 		
-		/*List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
+		List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
 		adyacentesAdmin.add(RoomNave.CAFETERIA);
 		adyacentesAdmin.add(RoomNave.STORAGE);
 		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, -1, false));
-		*/
+		
 	}
+	
+	public ImpostorAgentState(Map<RoomNave, InfoSala> nave, RoomNave salaActual, int cantidadTripulantes,
+			int energiaImpostor, int pasosPorCaf, int pasosPorSto, boolean noMove) {
+		super();
+		this.nave = nave;
+		this.salaActual = salaActual;
+		this.cantidadTripulantes = cantidadTripulantes;
+		this.energiaImpostor = energiaImpostor;
+		this.pasosPorCafeteria=pasosPorCaf;
+		this.pasosPorStorage=pasosPorSto;
+		this.noMove = noMove;
+	}
+
+	@Override
+	public void updateState(Perception p) {
+		ImpostorPerception impostorPerception = (ImpostorPerception) p;
+		
+		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());
+		//this.energiaImpostor = impostorPerception.getEnergiaImpostor();
+		this.pasosPorCafeteria=0;
+		this.pasosPorStorage=0;
+		this.noMove=false;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof ImpostorAgentState))
+            return false;
+
+		if (salaActual != ((ImpostorAgentState) obj).getSalaActual()) {
+            return false;
+        }
+        
+        if(energiaImpostor != ((ImpostorAgentState) obj).getEnergiaImpostor()) {
+        	return false;
+        }
+        
+        if(cantidadTripulantes != ((ImpostorAgentState) obj).getCantidadTripulantes()) {
+        	return false;
+        }
+        
+		if(this.pasosPorCafeteria != ((ImpostorAgentState) obj).getPasosPorCafeteria()) return false;
+		if(this.pasosPorStorage != ((ImpostorAgentState) obj).getPasosPorStorage()) return false;
+		if(this.noMove != ((ImpostorAgentState) obj).isNoMove()) return false;
+		
+		Map<RoomNave, InfoSala> naveObj = ((ImpostorAgentState) obj).getNave();
+
+		if(naveObj.size() != this.nave.size()) {
+			return false;
+		}
+		
+        for (Map.Entry<RoomNave, InfoSala> entry : nave.entrySet()) {
+	        RoomNave room = entry.getKey();
+	        if(!naveObj.containsKey(room)){
+	        	return false;
+	        }
+	        InfoSala infoSala = entry.getValue();
+	        if(!infoSala.equals(naveObj.get(room))){
+	        	return false;
+	        } 
+	    }
+        
+        return true;
+	}
+
+	@Override
+	public SearchBasedAgentState clone() {
+		Map<RoomNave, InfoSala> newNave = new HashMap<RoomNave, InfoSala>();
+		
+		for (Map.Entry<RoomNave, InfoSala> entry : nave.entrySet()) {
+	        RoomNave room = entry.getKey();
+	        InfoSala infoSala = entry.getValue();
+	        newNave.put(room, new InfoSala(infoSala.getSalasAdyacentes(), infoSala.getCantidadTripuntalesEnSala(), infoSala.isTareaSaboteable()));
+	    }
+		
+		RoomNave newSalaActual = this.salaActual;
+		
+		int newCantidadTripulantes = this.cantidadTripulantes;
+		int newEnergiaImpostor = this.energiaImpostor;
+		int newPasosPorCaf = this.pasosPorCafeteria;
+		int newPasosPorSto = this.pasosPorStorage;
+		boolean newNoMove = this.noMove;
+	
+		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor,newPasosPorCaf, newPasosPorSto,newNoMove);
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer str = new StringBuffer();
+		
+		str.append("\n");
+		str.append("Nave: "+this.nave+"\n");
+		str.append("Sala actual: "+this.salaActual+"\n");
+		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
+		str.append("Energia: "+this.energiaImpostor+"\n");
+		
+		return str.toString();
+	}
+
 
 	public boolean isNoMoreTribulantes() {
 
@@ -283,6 +287,32 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	public void setNave(Map<RoomNave, InfoSala> nave) {
 		this.nave = nave;
 	}
+
+	public int getPasosPorCafeteria() {
+		return pasosPorCafeteria;
+	}
+
+	public void setPasosPorCafeteria(int pasosPorCafeteria) {
+		this.pasosPorCafeteria = pasosPorCafeteria;
+	}
+
+	public int getPasosPorStorage() {
+		return pasosPorStorage;
+	}
+
+	public void setPasosPorStorage(int pasosPorStorage) {
+		this.pasosPorStorage = pasosPorStorage;
+	}
+
+	public boolean isNoMove() {
+		return noMove;
+	}
+
+	public void setNoMove(boolean noMove) {
+		this.noMove = noMove;
+	}
+
+	
 
 	
 

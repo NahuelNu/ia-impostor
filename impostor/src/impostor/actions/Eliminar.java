@@ -12,8 +12,6 @@ public class Eliminar extends SearchAction {
 
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
-		// TODO Auto-generated method stub
-		
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
 		 RoomNave posActual = impostorState.getSalaActual();
@@ -24,8 +22,8 @@ public class Eliminar extends SearchAction {
 			
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
-			// System.out.println("ELIMINA 1 ############################");
 			
+			//System.out.println("ELIMINA 1 ############################");
 			return impostorState;
 		}
 		

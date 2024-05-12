@@ -14,7 +14,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	private int cantidadTripulantes;
 	private int enegiaImpostor;
 	private RoomNave salaActualImpostor;
-	private int cantidadTareas;
+	//private int cantidadTareas;
 
 	public ImpostorEnvironmentState() {
 		super();
@@ -24,8 +24,8 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	@Override
 	public void initState() {
 		//cantidad de tripulantes al inicio:
-		cantidadTripulantes = 2;
-		cantidadTareas = 3;
+		cantidadTripulantes = 4;
+		//cantidadTareas = 3;
 		nave =  new HashMap<RoomNave, InfoSala>();
 		
 		//iniciar nave, salas y detalles de cada una
@@ -33,7 +33,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesCafeteria.add(RoomNave.WEAPONS);
 		adyacentesCafeteria.add(RoomNave.UPPER_ENGINE);
 		adyacentesCafeteria.add(RoomNave.MEDBAY);
-		//adyacentesCafeteria.add(RoomNave.ADMIN);
+		adyacentesCafeteria.add(RoomNave.ADMIN);
 		adyacentesCafeteria.add(RoomNave.STORAGE);
 		nave.put(RoomNave.CAFETERIA, new InfoSala(adyacentesCafeteria, 0, false));
 		
@@ -54,7 +54,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesNavigation.add(RoomNave.WEAPONS);
 		adyacentesNavigation.add(RoomNave.O2);
 		adyacentesNavigation.add(RoomNave.SHIELDS);
-		nave.put(RoomNave.NAVIGATION, new InfoSala(adyacentesNavigation, 0, false));
+		nave.put(RoomNave.NAVIGATION, new InfoSala(adyacentesNavigation, 1, false));
 		
 		List<RoomNave> adyacentesShields = new ArrayList<RoomNave>();
 		adyacentesShields.add(RoomNave.WEAPONS);
@@ -62,7 +62,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesShields.add(RoomNave.NAVIGATION);
 		adyacentesShields.add(RoomNave.COMMUNICATION);
 		adyacentesShields.add(RoomNave.STORAGE);
-		nave.put(RoomNave.SHIELDS, new InfoSala(adyacentesShields, 1, false));
+		nave.put(RoomNave.SHIELDS, new InfoSala(adyacentesShields, 0, false));
 		
 		List<RoomNave> adyacentesCommunication = new ArrayList<RoomNave>();
 		adyacentesCommunication.add(RoomNave.SHIELDS);
@@ -71,7 +71,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		
 		List<RoomNave> adyacentesStorage = new ArrayList<RoomNave>();
 		adyacentesStorage.add(RoomNave.CAFETERIA);
-		//adyacentesStorage.add(RoomNave.ADMIN);
+		adyacentesStorage.add(RoomNave.ADMIN);
 		adyacentesStorage.add(RoomNave.ELECTRICAL);
 		adyacentesStorage.add(RoomNave.COMMUNICATION);
 		adyacentesStorage.add(RoomNave.SHIELDS);
@@ -116,11 +116,11 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesMedbay.add(RoomNave.CAFETERIA);
 		nave.put(RoomNave.MEDBAY, new InfoSala(adyacentesMedbay, 0, false));
 		
-		/*List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
+		List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
 		adyacentesAdmin.add(RoomNave.CAFETERIA);
 		adyacentesAdmin.add(RoomNave.STORAGE);
 		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, 0, false));
-		*/
+		
 		
 		//posicion inicial y energia inicial del impostor:
 		this.setSalaActualImpostor(RoomNave.CAFETERIA);

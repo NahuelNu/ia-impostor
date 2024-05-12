@@ -30,19 +30,20 @@ public class ImpostorAgent extends SearchBasedAgent{
 		
         Vector<SearchAction> operators = new Vector<SearchAction>();
         operators.addElement(new Eliminar());
-        operators.addElement(new IrA(RoomNave.CAFETERIA));
         operators.addElement(new IrA(RoomNave.WEAPONS));
         operators.addElement(new IrA(RoomNave.SHIELDS));
-        operators.addElement(new IrA(RoomNave.STORAGE));
         operators.addElement(new IrA(RoomNave.O2));
         operators.addElement(new IrA(RoomNave.NAVIGATION));
         operators.addElement(new IrA(RoomNave.COMMUNICATION));
-      //operators.addElement(new IrA(RoomNave.ADMIN));
+        operators.addElement(new IrA(RoomNave.ADMIN));
         operators.addElement(new IrA(RoomNave.LOWER_ENGINE));
         operators.addElement(new IrA(RoomNave.REACTOR));
         operators.addElement(new IrA(RoomNave.SECURITY));
         operators.addElement(new IrA(RoomNave.UPPER_ENGINE));
         operators.addElement(new IrA(RoomNave.MEDBAY));
+        operators.addElement(new IrA(RoomNave.ELECTRICAL));
+        operators.addElement(new IrA(RoomNave.STORAGE));
+        operators.addElement(new IrA(RoomNave.CAFETERIA));
         operators.addElement(new NoMove());
 
 

@@ -37,11 +37,12 @@ public class ImpostorEnvironment  extends Environment{
         RoomNave posAgente = this.getEnvironmentState().getSalaActualImpostor();
 
         List<RoomNave> salasAdy = this.getEnvironmentState().getNave().get(posAgente).getSalasAdyacentes();
-		int cantidadTrip = this.getEnvironmentState().getNave().get(posAgente).getCantidadTripuntalesEnSala();
+		int cantidadTripEnSala = this.getEnvironmentState().getNave().get(posAgente).getCantidadTripuntalesEnSala();
 		boolean tareaSaboteable = this.getEnvironmentState().getNave().get(posAgente).isTareaSaboteable();
 		
-		InfoSala aux = new InfoSala(salasAdy, cantidadTrip, tareaSaboteable);
-        // Set the perception sensors
+		InfoSala aux = new InfoSala(salasAdy, cantidadTripEnSala, tareaSaboteable);
+        
+		// Set the perception sensors
         perception.setInfoSalaActual(aux);
         
         // Return the perception

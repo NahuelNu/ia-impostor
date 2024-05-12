@@ -10,14 +10,14 @@ import impostor.classes.InfoSala;
 
 public class ImpostorPerception extends Perception{
 	
-	public static int UNKNOWN_PERCEPTION = -1;
-    public static int EMPTY_PERCEPTION = 0;
-    public static int CREWMATE_PERCEPTION = 1;
-    public static int MULTIPLE_CREWMATES_PERCEPTION = 2;
-    public static int TASK_PERCEPTION = 2;
+//	public static int UNKNOWN_PERCEPTION = -1;
+//    public static int EMPTY_PERCEPTION = 0;
+//    public static int CREWMATE_PERCEPTION = 1;
+//    public static int MULTIPLE_CREWMATES_PERCEPTION = 2;
+//    public static int TASK_PERCEPTION = 2;
     
     private InfoSala infoSalaActual;
-    private int energiaImpostor;
+    //private int energiaImpostor;
     
     public ImpostorPerception() {
     	
@@ -41,20 +41,20 @@ public class ImpostorPerception extends Perception{
 	     
 	     RoomNave posImpostor = environmentState.getSalaActualImpostor();
 	     this.setInfoSalaActual(environmentState.getNave().get(posImpostor));
-	     this.setEnergiaImpostor(environmentState.getEnegiaImpostor());
+	     //this.setEnergiaImpostor(environmentState.getEnegiaImpostor());
 	}
 
 	public void setInfoSalaActual(InfoSala info) {
 		this.infoSalaActual=info;
 	}
 
-	public int getEnergiaImpostor() {
-		return energiaImpostor;
-	}
-
-	public void setEnergiaImpostor(int energiaImpostor) {
-		this.energiaImpostor = energiaImpostor;
-	}
+//	public int getEnergiaImpostor() {
+//		return energiaImpostor;
+//	}
+//
+//	public void setEnergiaImpostor(int energiaImpostor) {
+//		this.energiaImpostor = energiaImpostor;
+//	}
 
 	public InfoSala getInfoSalaActual() {
 		return infoSalaActual;
@@ -65,7 +65,7 @@ public class ImpostorPerception extends Perception{
         StringBuffer str = new StringBuffer();
         
         str.append("\n");
-        str.append("Energia impostor: " + this.energiaImpostor +"\n");
+        //str.append("Energia impostor: " + this.energiaImpostor +"\n");
         str.append("Info sala actual: " + this.infoSalaActual+"\n");
 
         return str.toString();

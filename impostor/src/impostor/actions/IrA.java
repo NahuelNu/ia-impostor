@@ -29,26 +29,37 @@ public class IrA extends SearchAction {
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
-		RoomNave posAgente = impostorState.getSalaActual();
+		if(this.ambiente != RoomNave.CAFETERIA && this.ambiente != RoomNave.STORAGE) {
+			if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
+		}
+		else if(this.ambiente==RoomNave.CAFETERIA){
+			if(impostorState.getPasosPorCafeteria()>1) return null;
+			else impostorState.setPasosPorCafeteria(impostorState.getPasosPorCafeteria()+1);
+		}
+		else {
+			if(impostorState.getPasosPorStorage()>1) return null;
+			else impostorState.setPasosPorStorage(impostorState.getPasosPorStorage()+1);
+		}
 		
+		RoomNave posAgente = impostorState.getSalaActual();
 		List <RoomNave> ambientesAdyacentes= 
 				(ArrayList <RoomNave>) (impostorState.getNave().get(posAgente).getSalasAdyacentes());
 		
 		  //Si la lista de ambientes adyacentes (a los que puede moverse) no contiene a
 		  //este ambiente entonces retornar null
 		if(!ambientesAdyacentes.contains(ambiente)) return null;
-		//if(!impostorState.getAmbientesAdyacentes().contains(ambiente)) return null;
 		  
 		impostorState.setSalaActual(ambiente);
 		
+		
+		//Para el objetivo (todas las salas en 0)
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
 			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
 		
-		if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
-		
 		//System.out.println("Se mueve a "+this.ambiente+" ############################");
+		//System.out.println(impostorState.getPasos());
 		return impostorState;
 		 
 	}

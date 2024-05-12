@@ -18,6 +18,10 @@ public class NoMove extends SearchAction{
 		
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		RoomNave posAgente = impostorState.getSalaActual();
+		
+		if(impostorState.isNoMove()) return null;
+		impostorState.setNoMove(true);
+		
 		List <RoomNave> ambientesAdyacentes= 
 				(ArrayList <RoomNave>) (impostorState.getNave().get(posAgente).getSalasAdyacentes());
 		
@@ -26,6 +30,7 @@ public class NoMove extends SearchAction{
 			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
+		
 		//System.out.println("NO SE MUEVEA SADASDF############################");
 		return impostorState;
 	}
@@ -41,9 +46,8 @@ public class NoMove extends SearchAction{
 
 		ImpostorAgentState impostorState = (ImpostorAgentState) ast;
 		ImpostorEnvironmentState enviromentState = (ImpostorEnvironmentState) est;
-
-		//if(impostorState.isNoMoreTribulantes()) return enviromentState;
 		
+		System.out.println("-------------ESTO NO SE EJECUTA NUNCA----------");
 		return enviromentState;
 	}
 
