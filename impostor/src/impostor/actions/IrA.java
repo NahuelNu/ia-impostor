@@ -31,17 +31,17 @@ public class IrA extends SearchAction {
 		
 		if(this.ambiente != RoomNave.CAFETERIA && this.ambiente != RoomNave.STORAGE) {
 			if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
-			impostorState.incrementarCostoCamino(this.getCost());
+			//impostorState.incrementarCostoCamino(this.getCost());
 		}
 		else if(this.ambiente==RoomNave.CAFETERIA){
 			if(impostorState.getPasosPorCafeteria()>1) return null;
 			else impostorState.setPasosPorCafeteria(impostorState.getPasosPorCafeteria()+1);
-			impostorState.incrementarCostoCamino(3*this.getCost());
+			//impostorState.incrementarCostoCamino(3*this.getCost());
 		}
 		else {
 			if(impostorState.getPasosPorStorage()>1) return null;
 			else impostorState.setPasosPorStorage(impostorState.getPasosPorStorage()+1);
-			impostorState.incrementarCostoCamino(3*this.getCost());
+			//impostorState.incrementarCostoCamino(3*this.getCost());
 		}
 		
 		RoomNave posAgente = impostorState.getSalaActual();
@@ -105,7 +105,7 @@ public class IrA extends SearchAction {
 	
 	@Override
 	public Double getCost() {
-		return 10.0;
+		return 0.0;
 	}
 
 	@Override

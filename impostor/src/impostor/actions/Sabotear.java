@@ -55,7 +55,7 @@ public class Sabotear extends SearchAction{
 	
 	@Override
 	public Double getCost() {
-		return 1.0;
+		return -105.0;
 	}
 
 	@Override

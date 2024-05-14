@@ -57,8 +57,7 @@ public class Eliminar extends SearchAction {
 	
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return 0.5;
+		return -110.0;
 	}
 	
 	@Override

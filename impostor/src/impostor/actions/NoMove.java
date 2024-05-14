@@ -25,7 +25,6 @@ public class NoMove extends SearchAction{
 		List <RoomNave> ambientesAdyacentes= 
 				(ArrayList <RoomNave>) (impostorState.getNave().get(posAgente).getSalasAdyacentes());
 		
-		//if(impostorState.isNoMoreTribulantes()) 
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
 			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
 			impostorState.getNave().put(posAgente, infoSalaNew);
