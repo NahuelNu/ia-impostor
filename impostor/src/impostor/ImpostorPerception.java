@@ -1,6 +1,7 @@
 package impostor;
 
 import java.util.List;
+import java.util.Map;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -12,7 +13,7 @@ import impostor.classes.RoomNave;
 public class ImpostorPerception extends Perception{
     
     private InfoSala infoSalaActual;
-    //private int energiaImpostor;
+    private Map<RoomNave, InfoSala> nave;
     
     public ImpostorPerception() {
     	
@@ -21,7 +22,6 @@ public class ImpostorPerception extends Perception{
 	// Estos 2 metodos no se usan nunca en el ejemplo de pacman
 	public ImpostorPerception(Agent agent, Environment environment) {
 		super(agent, environment);
-		// TODO Auto-generated constructor stub
 	}
 	
     /**
@@ -45,19 +45,20 @@ public class ImpostorPerception extends Perception{
 		this.infoSalaActual=info;
 	}
 
-//	public int getEnergiaImpostor() {
-//		return energiaImpostor;
-//	}
-//
-//	public void setEnergiaImpostor(int energiaImpostor) {
-//		this.energiaImpostor = energiaImpostor;
-//	}
-
 	public InfoSala getInfoSalaActual() {
 		return infoSalaActual;
 	}
 	
-    @Override
+	
+    public Map<RoomNave, InfoSala> getNave() {
+		return nave;
+	}
+
+	public void setNave(Map<RoomNave, InfoSala> nave) {
+		this.nave = nave;
+	}
+
+	@Override
     public String toString() {
         StringBuffer str = new StringBuffer();
         

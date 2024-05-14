@@ -36,7 +36,8 @@ public class NoMove extends SearchAction{
 
 	@Override
 	public Double getCost() {
-		return 200.0;
+		//1100 porque la suma de los nodos es 1050 (140+130+120+110+...)
+		return 1100.0;
 	}
 
 	@Override

@@ -159,7 +159,20 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	public void updateState(Perception p) {
 		ImpostorPerception impostorPerception = (ImpostorPerception) p;
 		
+		if(impostorPerception.getNave()!=null) {
+			for (Map.Entry<RoomNave, InfoSala> entry : impostorPerception.getNave().entrySet()) {
+		        RoomNave room = entry.getKey();
+		        InfoSala infoSala = entry.getValue();
+		        this.nave.put(room, new InfoSala(infoSala.getSalasAdyacentes(), infoSala.getCantidadTripuntalesEnSala(), infoSala.isTareaSaboteable()));
+		    }
+			
+			for (RoomNave clave : this.nave.keySet()) {
+	            InfoSala valor = this.nave.get(clave);
+	            if(valor.getCantidadTripuntalesEnSala()==0) valor.setCantidadTripuntalesEnSala(-1);
+	        }
+		}
 		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());
+		
 		this.pasosPorCafeteria=0;
 		this.pasosPorStorage=0;
 		this.noMove=false;

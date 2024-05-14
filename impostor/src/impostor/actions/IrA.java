@@ -29,6 +29,8 @@ public class IrA extends SearchAction {
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
+		if(impostorState.getEnergiaImpostor()==0) return null;
+		
 		if(this.ambiente != RoomNave.CAFETERIA && this.ambiente != RoomNave.STORAGE) {
 			if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
 			//impostorState.incrementarCostoCamino(this.getCost());

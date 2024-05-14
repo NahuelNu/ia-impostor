@@ -7,8 +7,7 @@ public class ImpostorGoal extends GoalTest{
 
 	@Override
     public boolean isGoalState(AgentState agentState) {
-		// TODO: Función prueba de meta
-		
+		// Función prueba de meta
 		
 		if (	((ImpostorAgentState) agentState).isNoMoreTribulantes() && 
 				((ImpostorAgentState) agentState).isNoMoreTareas()	&&

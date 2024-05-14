@@ -84,6 +84,7 @@ public class ImpostorAgent extends SearchBasedAgent{
          * Uniform Cost:
          * IStepCostFunction costFunction = new CostFunction();
          * UniformCostSearch strategy = new UniformCostSearch(costFunction);
+         * 
          * UniformCostSearch strategy = new UniformCostSearch(new FuncionCosto());
          * 
          * A Star Search:

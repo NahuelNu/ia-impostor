@@ -16,6 +16,8 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	private int energiaImpostor;
 	private RoomNave salaActualImpostor;
 	private int cantidadTareas;
+	
+	private int activarPoderExtraSensorial;
 
 	public ImpostorEnvironmentState() {
 		super();
@@ -24,10 +26,11 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
 	@Override
 	public void initState() {
+		this.activarPoderExtraSensorial=1;
 		this.energiaImpostor = 20;
-		cantidadTripulantes = 4;
-		cantidadTareas = 3;
-		nave =  new HashMap<RoomNave, InfoSala>();
+		this.cantidadTripulantes = 4;
+		this.cantidadTareas = 3;
+		this.nave =  new HashMap<RoomNave, InfoSala>();
 		
 		//iniciar nave, salas y detalles de cada una
 		List<RoomNave> adyacentesCafeteria = new ArrayList<RoomNave>();
@@ -88,8 +91,8 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesLowerEngine.add(RoomNave.STORAGE);
 		adyacentesLowerEngine.add(RoomNave.ELECTRICAL);
 		adyacentesLowerEngine.add(RoomNave.REACTOR);
-		adyacentesElectrical.add(RoomNave.SECURITY);
-		adyacentesElectrical.add(RoomNave.UPPER_ENGINE);
+		adyacentesLowerEngine.add(RoomNave.SECURITY);
+		adyacentesLowerEngine.add(RoomNave.UPPER_ENGINE);
 		nave.put(RoomNave.LOWER_ENGINE, new InfoSala(adyacentesLowerEngine, 0, false));
 		
 		List<RoomNave> adyacentesReactor = new ArrayList<RoomNave>();
@@ -167,6 +170,14 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
 	public void setCantidadTareas(int cantidadTareas) {
 		this.cantidadTareas = cantidadTareas;
+	}
+
+	public int getActivarPoderExtraSensorial() {
+		return activarPoderExtraSensorial;
+	}
+
+	public void setActivarPoderExtraSensorial(int activarPoderExtraSensorial) {
+		this.activarPoderExtraSensorial = activarPoderExtraSensorial;
 	}
 
 	@Override
