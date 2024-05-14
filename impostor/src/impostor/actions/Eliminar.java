@@ -6,7 +6,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
-import impostor.RoomNave;
+import impostor.classes.RoomNave;
 
 public class Eliminar extends SearchAction {
 
@@ -23,6 +23,7 @@ public class Eliminar extends SearchAction {
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
 			
+			impostorState.incrementarCostoCamino(this.getCost());
 			//System.out.println("ELIMINA 1 ############################");
 			return impostorState;
 		}
@@ -57,7 +58,7 @@ public class Eliminar extends SearchAction {
 	@Override
 	public Double getCost() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0.5;
 	}
 	
 	@Override

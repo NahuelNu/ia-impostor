@@ -3,8 +3,6 @@ package impostor.classes;
 import java.util.List;
 import java.util.Objects;
 
-import impostor.RoomNave;
-
 public class InfoSala {
 
 	private List<RoomNave> salasAdyacentes;

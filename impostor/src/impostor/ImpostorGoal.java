@@ -11,7 +11,8 @@ public class ImpostorGoal extends GoalTest{
 		
 		
 		if (	((ImpostorAgentState) agentState).isNoMoreTribulantes() && 
-				((ImpostorAgentState) agentState).isNoMoreTareas()	) {
+				((ImpostorAgentState) agentState).isNoMoreTareas()	&&
+				((ImpostorAgentState) agentState).hasEnergy() 	) {
 			return true;
         }
         return false;

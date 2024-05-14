@@ -9,15 +9,18 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
 import impostor.classes.InfoSala;
+import impostor.classes.RoomNave;
 
 public class ImpostorAgentState extends SearchBasedAgentState{
 
 	private Map<RoomNave, InfoSala> nave;
 	private RoomNave salaActual;
-	//private InfoSala infoSalaActual;
 	private int cantidadTripulantes;
 	private int energiaImpostor;
 	private int cantidadTareas;
+	
+	// Utilizado en búsqueda para costo
+	private double costoCamino;
 	
 	// Utilizados en búsqueda para que puedan pasar por estas salas solo 2 veces
 	private int pasosPorCafeteria;
@@ -29,12 +32,13 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	public ImpostorAgentState() {
 		super();
 		this.salaActual = RoomNave.CAFETERIA;
-		this.energiaImpostor = 1000;
+		this.energiaImpostor = 20;
 		this.cantidadTripulantes = 4;
 		this.cantidadTareas = 3;
 		this.pasosPorCafeteria=0;
 		this.pasosPorStorage=0;
 		this.noMove=false;
+		this.costoCamino=0;
         initState();
     }
 	
@@ -138,7 +142,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	}
 	
 	public ImpostorAgentState(Map<RoomNave, InfoSala> nave, RoomNave salaActual, int cantidadTripulantes,
-			int energiaImpostor, int pasosPorCaf, int pasosPorSto, boolean noMove, int cantidadTareas) {
+			int energiaImpostor, int pasosPorCaf, int pasosPorSto, boolean noMove, int cantidadTareas, double costoCamino) {
 		super();
 		this.nave = nave;
 		this.salaActual = salaActual;
@@ -148,6 +152,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		this.pasosPorStorage=pasosPorSto;
 		this.noMove = noMove;
 		this.cantidadTareas= cantidadTareas;
+		this.costoCamino= costoCamino;
 	}
 
 	@Override
@@ -155,10 +160,10 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		ImpostorPerception impostorPerception = (ImpostorPerception) p;
 		
 		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());
-		//this.energiaImpostor = impostorPerception.getEnergiaImpostor();
 		this.pasosPorCafeteria=0;
 		this.pasosPorStorage=0;
 		this.noMove=false;
+		this.costoCamino=0;
 	}
 
 
@@ -184,6 +189,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		if(this.pasosPorCafeteria != ((ImpostorAgentState) obj).getPasosPorCafeteria()) return false;
 		if(this.pasosPorStorage != ((ImpostorAgentState) obj).getPasosPorStorage()) return false;
 		if(this.noMove != ((ImpostorAgentState) obj).isNoMove()) return false;
+		if(this.costoCamino != ((ImpostorAgentState) obj).getCostoCamino()) return false;
 		
 		Map<RoomNave, InfoSala> naveObj = ((ImpostorAgentState) obj).getNave();
 
@@ -223,8 +229,9 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		int newPasosPorCaf = this.pasosPorCafeteria;
 		int newPasosPorSto = this.pasosPorStorage;
 		boolean newNoMove = this.noMove;
+		double newCosto = this.costoCamino;
 	
-		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor,newPasosPorCaf, newPasosPorSto,newNoMove, newCantidadTareas);
+		return new ImpostorAgentState(newNave, newSalaActual, newCantidadTripulantes, newEnergiaImpostor,newPasosPorCaf, newPasosPorSto,newNoMove, newCantidadTareas, newCosto);
 	}
 
 	@Override
@@ -268,7 +275,12 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 		
 		return true;
 	}
-
+	
+	public boolean hasEnergy() {
+		if(this.getEnergiaImpostor()>0) return true;
+		return false;
+	}
+	
 	public Map<RoomNave, InfoSala> getNave() {
 		return nave;
 	}
@@ -331,6 +343,14 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 
 	public void setCantidadTareas(int cantidadTareas) {
 		this.cantidadTareas = cantidadTareas;
+	}
+
+	public double getCostoCamino() {
+		return this.costoCamino;
+	}
+
+	public void incrementarCostoCamino(double cost) {
+		this.costoCamino +=cost;
 	}
 
 	

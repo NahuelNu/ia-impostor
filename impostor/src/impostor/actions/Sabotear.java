@@ -6,7 +6,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
-import impostor.RoomNave;
+import impostor.classes.RoomNave;
 
 public class Sabotear extends SearchAction{
 
@@ -20,6 +20,8 @@ public class Sabotear extends SearchAction{
 			impostorState.getNave().get(posActual).setTareaSaboteable(false);	
 			int aux = impostorState.getCantidadTareas();
 			impostorState.setCantidadTareas(aux-1);
+			
+			impostorState.incrementarCostoCamino(this.getCost());
 			 return impostorState;
 		 }
 		 
@@ -53,8 +55,7 @@ public class Sabotear extends SearchAction{
 	
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return 1.0;
 	}
 
 	@Override

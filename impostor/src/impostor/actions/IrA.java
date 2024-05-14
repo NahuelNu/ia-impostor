@@ -9,8 +9,8 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
-import impostor.RoomNave;
 import impostor.classes.InfoSala;
+import impostor.classes.RoomNave;
 
 public class IrA extends SearchAction {
 	
@@ -31,14 +31,17 @@ public class IrA extends SearchAction {
 		
 		if(this.ambiente != RoomNave.CAFETERIA && this.ambiente != RoomNave.STORAGE) {
 			if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()==0) return null;
+			impostorState.incrementarCostoCamino(this.getCost());
 		}
 		else if(this.ambiente==RoomNave.CAFETERIA){
 			if(impostorState.getPasosPorCafeteria()>1) return null;
 			else impostorState.setPasosPorCafeteria(impostorState.getPasosPorCafeteria()+1);
+			impostorState.incrementarCostoCamino(3*this.getCost());
 		}
 		else {
 			if(impostorState.getPasosPorStorage()>1) return null;
 			else impostorState.setPasosPorStorage(impostorState.getPasosPorStorage()+1);
+			impostorState.incrementarCostoCamino(3*this.getCost());
 		}
 		
 		RoomNave posAgente = impostorState.getSalaActual();
@@ -58,8 +61,9 @@ public class IrA extends SearchAction {
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
 		
+		impostorState.setEnergiaImpostor(impostorState.getEnergiaImpostor()-1);
+		
 		//System.out.println("Se mueve a "+this.ambiente+" ############################");
-		//System.out.println(impostorState.getPasos());
 		return impostorState;
 		 
 	}
@@ -81,15 +85,18 @@ public class IrA extends SearchAction {
 		if(!ambientesAdyacentes.contains(ambiente)) return null;
 		
 		
-		// Esto hace falta en este .execute() ???
-		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
-			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
-			impostorState.getNave().put(posAgente, infoSalaNew);
-		}
+		// Esto hace falta en este .execute() ??? No, porque por la percepción ya lo tiene en 0 o >
+//		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
+//			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
+//			impostorState.getNave().put(posAgente, infoSalaNew);
+//		}
 		
 		environmentState.setSalaActualImpostor(ambiente);
 		impostorState.setSalaActual(ambiente);
-		 
+		
+		impostorState.setEnergiaImpostor(impostorState.getEnergiaImpostor()-1);
+		environmentState.setEnergiaImpostor(environmentState.getEnergiaImpostor()-1);
+		
 		//System.out.println("Se mueve a "+this.ambiente+" REAL ############################");
 		return environmentState;
 		
@@ -98,8 +105,7 @@ public class IrA extends SearchAction {
 	
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return 10.0;
 	}
 
 	@Override

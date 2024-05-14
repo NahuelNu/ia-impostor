@@ -5,6 +5,7 @@ import java.util.List;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 import impostor.classes.InfoSala;
+import impostor.classes.RoomNave;
 
 public class ImpostorEnvironment  extends Environment{
 	
@@ -27,13 +28,13 @@ public class ImpostorEnvironment  extends Environment{
      */
     @Override
     public Perception getPercept() {
-        // Create a new perception to return
-        ImpostorPerception perception = new ImpostorPerception();
+    	
+
+    	ImpostorPerception perception = new ImpostorPerception();
         
         
         // Get the actual position of the agent to be able to create the
         // perception
-        
         RoomNave posAgente = this.getEnvironmentState().getSalaActualImpostor();
 
         List<RoomNave> salasAdy = this.getEnvironmentState().getNave().get(posAgente).getSalasAdyacentes();

@@ -9,8 +9,8 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
-import impostor.RoomNave;
 import impostor.classes.InfoSala;
+import impostor.classes.RoomNave;
 
 public class NoMove extends SearchAction{
 	@Override
@@ -30,15 +30,14 @@ public class NoMove extends SearchAction{
 			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
-		
+		impostorState.incrementarCostoCamino(this.getCost());
 		//System.out.println("NO SE MUEVEA SADASDF############################");
 		return impostorState;
 	}
 
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		return 200.0;
 	}
 
 	@Override

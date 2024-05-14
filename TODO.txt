@@ -1,0 +1,8 @@
+- Energía inicial del impostor aleatoria entre 30-150
+- Ubicación inicial de impostor y tripulantes debe ser aleatoria
+- Tripulantes cada 1-3 ciclos de percepción debe cambiar de posición aleatoriamente(siempre adyacente a la que ya está) 
+	Cada tripulante tiene ciclos independientes 
+- Poder extrasensorial cada 3-5 ciclos de percepción.
+	Lo hace si o si
+
+FUNCIÓN COSTO Y HEURISTICA??? para métodos de búsqueda costo uniforme y búsqueda informada

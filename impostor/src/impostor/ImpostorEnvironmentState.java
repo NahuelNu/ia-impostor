@@ -7,12 +7,13 @@ import java.util.Map;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.classes.InfoSala;
+import impostor.classes.RoomNave;
 
 public class ImpostorEnvironmentState extends EnvironmentState {
 	
 	private Map<RoomNave, InfoSala> nave; 
 	private int cantidadTripulantes;
-	private int enegiaImpostor;
+	private int energiaImpostor;
 	private RoomNave salaActualImpostor;
 	private int cantidadTareas;
 
@@ -23,7 +24,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 
 	@Override
 	public void initState() {
-		//cantidad de tripulantes al inicio:
+		this.energiaImpostor = 20;
 		cantidadTripulantes = 4;
 		cantidadTareas = 3;
 		nave =  new HashMap<RoomNave, InfoSala>();
@@ -124,7 +125,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		
 		//posicion inicial y energia inicial del impostor:
 		this.setSalaActualImpostor(RoomNave.CAFETERIA);
-		this.setEnegiaImpostor(1000);
         
 	}
 	
@@ -144,12 +144,12 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		this.cantidadTripulantes = cantidadTripulantes;
 	}
 
-	public int getEnegiaImpostor() {
-		return enegiaImpostor;
+	public int getEnergiaImpostor() {
+		return energiaImpostor;
 	}
 
-	public void setEnegiaImpostor(int enegiaImpostor) {
-		this.enegiaImpostor = enegiaImpostor;
+	public void setEnergiaImpostor(int enegiaImpostor) {
+		this.energiaImpostor = enegiaImpostor;
 	}
 
 	public RoomNave getSalaActualImpostor() {
@@ -177,7 +177,7 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		str.append("Nave: "+this.nave+"\n");
 		str.append("Sala actual impostor: "+this.salaActualImpostor+"\n");
 		str.append("Cantidad de tripulantes vivos: "+this.cantidadTripulantes+"\n");
-		str.append("Energia: "+this.enegiaImpostor+"\n");
+		str.append("Energia: "+this.energiaImpostor+"\n");
 		
 		return str.toString();
 		
