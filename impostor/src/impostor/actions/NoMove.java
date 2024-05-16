@@ -13,31 +13,48 @@ import impostor.classes.InfoSala;
 import impostor.classes.RoomNave;
 
 public class NoMove extends SearchAction{
+	
+	private double cost;
+	
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		RoomNave posAgente = impostorState.getSalaActual();
 		
+		//Si ya hice un NoMove o en la sala actual hay un tripulante o tarea por sabotear retornar null
 		if(impostorState.isNoMove() || impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()>0 || impostorState.getNave().get(posAgente).getTareaSaboteable()==1) return null;
 		impostorState.setNoMove(true);
 		
 		List <RoomNave> ambientesAdyacentes= 
 				(ArrayList <RoomNave>) (impostorState.getNave().get(posAgente).getSalasAdyacentes());
 		
+		//Recorrer nave para que si todavía puedo moverme a las adyacentes retornar null
+		for (RoomNave clave : impostorState.getNave().keySet()) {
+			if(ambientesAdyacentes.contains(clave)) { 
+				InfoSala valor = impostorState.getNave().get(clave);
+				if(valor.getCantidadTripuntalesEnSala()!=0 || valor.getTareaSaboteable()!=0) return null;
+			}
+        }
+		
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
 			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
-		impostorState.incrementarCostoCamino(this.getCost());
+		
+		//Necesario?
+		this.setCost(2);
 		//System.out.println("NO SE MUEVEA SADASDF############################");
 		return impostorState;
 	}
 
 	@Override
 	public Double getCost() {
-		//1100 porque la suma de los nodos es 1050 (140+130+120+110+...)
-		return 1100.0;
+		return this.cost;
+	}
+	
+	private void setCost(double cost) {
+		this.cost=cost;
 	}
 
 	@Override

@@ -9,20 +9,23 @@ import impostor.ImpostorEnvironmentState;
 import impostor.classes.RoomNave;
 
 public class Sabotear extends SearchAction{
-
+	
+	private double cost;
+	
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
 		 RoomNave posActual = impostorState.getSalaActual();
+		 
 		 if(impostorState.getNave().get(posActual).getTareaSaboteable()==1) {
 			 
 			impostorState.getNave().get(posActual).setTareaSaboteable(0);	
 			int aux = impostorState.getCantidadTareas();
 			impostorState.setCantidadTareas(aux-1);
 			
-			impostorState.incrementarCostoCamino(this.getCost());
-			 return impostorState;
+			this.setCost(1.5);
+			return impostorState;
 		 }
 		 
 		return null;
@@ -55,7 +58,11 @@ public class Sabotear extends SearchAction{
 	
 	@Override
 	public Double getCost() {
-		return -105.0;
+		return this.cost;
+	}
+	
+	private void setCost(double cost) {
+		this.cost=cost;
 	}
 
 	@Override

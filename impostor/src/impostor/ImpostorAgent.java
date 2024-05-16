@@ -39,13 +39,13 @@ public class ImpostorAgent extends SearchBasedAgent{
         operators.addElement(new IrA(RoomNave.O2));
         operators.addElement(new IrA(RoomNave.NAVIGATION));
         operators.addElement(new IrA(RoomNave.COMMUNICATION));
-        operators.addElement(new IrA(RoomNave.ADMIN));
         operators.addElement(new IrA(RoomNave.LOWER_ENGINE));
         operators.addElement(new IrA(RoomNave.REACTOR));
         operators.addElement(new IrA(RoomNave.SECURITY));
         operators.addElement(new IrA(RoomNave.UPPER_ENGINE));
         operators.addElement(new IrA(RoomNave.MEDBAY));
         operators.addElement(new IrA(RoomNave.ELECTRICAL));
+        operators.addElement(new IrA(RoomNave.ADMIN));
         operators.addElement(new IrA(RoomNave.STORAGE));
         operators.addElement(new IrA(RoomNave.CAFETERIA));
         operators.addElement(new NoMove());
@@ -68,7 +68,7 @@ public class ImpostorAgent extends SearchBasedAgent{
     public Action selectAction() {
 
         // Create the search 
-    	UniformCostSearch strategy = new UniformCostSearch(new FuncionCosto());
+    	UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
 
         /**
          * Another search strategy examples:
@@ -100,7 +100,7 @@ public class ImpostorAgent extends SearchBasedAgent{
 
         /* Generate an XML file with the search tree. It can also be generated
          * in other formats like PDF with PDF_TREE */
-        searchSolver.setVisibleTree(Search.XML_TREE);
+        //searchSolver.setVisibleTree(Search.PDF_TREE);
 
         // Set the Search searchSolver.
         this.setSolver(searchSolver);

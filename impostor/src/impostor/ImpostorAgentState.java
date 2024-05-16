@@ -31,8 +31,9 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	
 	public ImpostorAgentState(DatosIniciales datosIniciales) {
 		super();
-		this.salaActual = datosIniciales.getSalaInicialImpostor();
-		this.energiaImpostor = 20;
+		this.salaActual=datosIniciales.getSalaInicialImpostor();
+		//this.salaActual = RoomNave.STORAGE;
+		this.energiaImpostor = 200;
 		this.cantidadTripulantes = 4;
 		this.cantidadTareas = 3;
 		this.pasosPorCafeteria=0;
@@ -169,6 +170,7 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 			for (RoomNave clave : this.nave.keySet()) {
 	            InfoSala valor = this.nave.get(clave);
 	            if(valor.getCantidadTripuntalesEnSala()==0) valor.setCantidadTripuntalesEnSala(-1);
+	            if(valor.getTareaSaboteable()==0) valor.setTareaSaboteable(-1);
 	        }
 		}
 		this.nave.put(this.salaActual, impostorPerception.getInfoSalaActual());

@@ -9,21 +9,23 @@ import impostor.ImpostorEnvironmentState;
 import impostor.classes.RoomNave;
 
 public class Eliminar extends SearchAction {
-
+	
+	private double cost;
+	
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
 		 RoomNave posActual = impostorState.getSalaActual();
-		 
-		if(impostorState.getNave().get(posActual).getCantidadTripuntalesEnSala()==1) {
-			
-			impostorState.getNave().get(posActual).setCantidadTripuntalesEnSala(0);
+		 int cantTripulantesEnSala=impostorState.getNave().get(posActual).getCantidadTripuntalesEnSala();
+		 if(cantTripulantesEnSala>0) {
+		
+			impostorState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
 			
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
 			
-			impostorState.incrementarCostoCamino(this.getCost());
+			this.setCost(1);
 			//System.out.println("ELIMINA 1 ############################");
 			return impostorState;
 		}
@@ -38,11 +40,11 @@ public class Eliminar extends SearchAction {
 		ImpostorEnvironmentState enviromentState = (ImpostorEnvironmentState) est;
 
 		RoomNave posActual = enviromentState.getSalaActualImpostor();
-		
-		if(enviromentState.getNave().get(posActual).getCantidadTripuntalesEnSala()==1) {
+		int cantTripulantesEnSala=enviromentState.getNave().get(posActual).getCantidadTripuntalesEnSala();
+		if(cantTripulantesEnSala>0) {
 			
-			enviromentState.getNave().get(posActual).setCantidadTripuntalesEnSala(0);
-			impostorState.getNave().get(posActual).setCantidadTripuntalesEnSala(0);
+			enviromentState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
+			impostorState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
 			
 			int aux = enviromentState.getCantidadTripulantes();
 			
@@ -57,7 +59,11 @@ public class Eliminar extends SearchAction {
 	
 	@Override
 	public Double getCost() {
-		return -110.0;
+		return this.cost;
+	}
+	
+	private void setCost(double cost) {
+		this.cost=cost;
 	}
 	
 	@Override
