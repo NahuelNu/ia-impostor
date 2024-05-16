@@ -21,7 +21,7 @@ public class FuncionCosto implements IStepCostFunction {
 		for (RoomNave clave : nave.keySet()) {
             InfoSala valor = nave.get(clave);
             if(valor.getCantidadTripuntalesEnSala()==-1) costo+=10;
-            if(valor.isTareaSaboteable()) costo+=10;
+            if(valor.getTareaSaboteable()==-1) costo+=10;
         }
 		
 		//costoCamino para mejorar el eliminar y sabotear

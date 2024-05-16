@@ -19,14 +19,14 @@ public class NoMove extends SearchAction{
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		RoomNave posAgente = impostorState.getSalaActual();
 		
-		if(impostorState.isNoMove()) return null;
+		if(impostorState.isNoMove() || impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()>0 || impostorState.getNave().get(posAgente).getTareaSaboteable()==1) return null;
 		impostorState.setNoMove(true);
 		
 		List <RoomNave> ambientesAdyacentes= 
 				(ArrayList <RoomNave>) (impostorState.getNave().get(posAgente).getSalasAdyacentes());
 		
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
-			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
+			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
 		impostorState.incrementarCostoCamino(this.getCost());

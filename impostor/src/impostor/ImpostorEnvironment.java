@@ -42,7 +42,7 @@ public class ImpostorEnvironment  extends Environment{
 
         List<RoomNave> salasAdy = environmentState.getNave().get(posAgente).getSalasAdyacentes();
 		int cantidadTripEnSala = environmentState.getNave().get(posAgente).getCantidadTripuntalesEnSala();
-		boolean tareaSaboteable = environmentState.getNave().get(posAgente).isTareaSaboteable();
+		int tareaSaboteable = environmentState.getNave().get(posAgente).getTareaSaboteable();
 		
 		InfoSala aux = new InfoSala(salasAdy, cantidadTripEnSala, tareaSaboteable);
         

@@ -7,9 +7,9 @@ public class InfoSala {
 
 	private List<RoomNave> salasAdyacentes;
 	private int cantidadTripuntalesEnSala;
-	private boolean tareaSaboteable;
+	private int tareaSaboteable;
 	
-	public InfoSala(List<RoomNave> salasAdyacentes, int cantidadTripuntalesEnSala, boolean tareaSaboteable) {
+	public InfoSala(List<RoomNave> salasAdyacentes, int cantidadTripuntalesEnSala, int tareaSaboteable) {
 		super();
 		this.salasAdyacentes = salasAdyacentes;
 		this.cantidadTripuntalesEnSala = cantidadTripuntalesEnSala;
@@ -27,10 +27,10 @@ public class InfoSala {
 	public void setCantidadTripuntalesEnSala(int cantidadTripuntalesEnSala) {
 		this.cantidadTripuntalesEnSala = cantidadTripuntalesEnSala;
 	}
-	public boolean isTareaSaboteable() {
+	public int getTareaSaboteable() {
 		return tareaSaboteable;
 	}
-	public void setTareaSaboteable(boolean tareaSaboteable) {
+	public void setTareaSaboteable(int tareaSaboteable) {
 		this.tareaSaboteable = tareaSaboteable;
 	}
 	@Override

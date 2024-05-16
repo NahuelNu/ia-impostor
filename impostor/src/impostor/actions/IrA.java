@@ -59,7 +59,7 @@ public class IrA extends SearchAction {
 		
 		//Para el objetivo (todas las salas en 0)
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
-			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
+			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
 		
@@ -85,13 +85,6 @@ public class IrA extends SearchAction {
 				(ArrayList <RoomNave>) (environmentState.getNave().get(posAgente).getSalasAdyacentes());
 		
 		if(!ambientesAdyacentes.contains(ambiente)) return null;
-		
-		
-		// Esto hace falta en este .execute() ??? No, porque por la percepción ya lo tiene en 0 o >
-//		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
-//			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,false);
-//			impostorState.getNave().put(posAgente, infoSalaNew);
-//		}
 		
 		environmentState.setSalaActualImpostor(ambiente);
 		impostorState.setSalaActual(ambiente);

@@ -15,9 +15,9 @@ public class Sabotear extends SearchAction{
 		ImpostorAgentState impostorState = (ImpostorAgentState) s;
 		
 		 RoomNave posActual = impostorState.getSalaActual();
-		 if(impostorState.getNave().get(posActual).isTareaSaboteable()) {
+		 if(impostorState.getNave().get(posActual).getTareaSaboteable()==1) {
 			 
-			impostorState.getNave().get(posActual).setTareaSaboteable(false);	
+			impostorState.getNave().get(posActual).setTareaSaboteable(0);	
 			int aux = impostorState.getCantidadTareas();
 			impostorState.setCantidadTareas(aux-1);
 			
@@ -36,10 +36,10 @@ public class Sabotear extends SearchAction{
 
 		RoomNave posActual = enviromentState.getSalaActualImpostor();
 		
-		if(enviromentState.getNave().get(posActual).isTareaSaboteable()) {
+		if(enviromentState.getNave().get(posActual).getTareaSaboteable()==1) {
 			
-			enviromentState.getNave().get(posActual).setTareaSaboteable(false);
-			impostorState.getNave().get(posActual).setTareaSaboteable(false);
+			enviromentState.getNave().get(posActual).setTareaSaboteable(0);
+			impostorState.getNave().get(posActual).setTareaSaboteable(0);
 
 			int aux = enviromentState.getCantidadTareas();
 			

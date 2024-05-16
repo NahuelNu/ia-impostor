@@ -42,26 +42,26 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesCafeteria.add(RoomNave.MEDBAY);
 		adyacentesCafeteria.add(RoomNave.ADMIN);
 		adyacentesCafeteria.add(RoomNave.STORAGE);
-		nave.put(RoomNave.CAFETERIA, new InfoSala(adyacentesCafeteria, 0, false));
+		nave.put(RoomNave.CAFETERIA, new InfoSala(adyacentesCafeteria, 0, 0));
 		
 		List<RoomNave> adyacentesWeapons = new ArrayList<RoomNave>();
 		adyacentesWeapons.add(RoomNave.CAFETERIA);
 		adyacentesWeapons.add(RoomNave.O2);
 		adyacentesWeapons.add(RoomNave.NAVIGATION);
 		adyacentesWeapons.add(RoomNave.SHIELDS);
-		nave.put(RoomNave.WEAPONS, new InfoSala(adyacentesWeapons, 0, false));
+		nave.put(RoomNave.WEAPONS, new InfoSala(adyacentesWeapons, 0, 0));
 		
 		List<RoomNave> adyacentesO2 = new ArrayList<RoomNave>();
 		adyacentesO2.add(RoomNave.WEAPONS);
 		adyacentesO2.add(RoomNave.NAVIGATION);
 		adyacentesO2.add(RoomNave.SHIELDS);
-		nave.put(RoomNave.O2, new InfoSala(adyacentesO2, 0, true));
+		nave.put(RoomNave.O2, new InfoSala(adyacentesO2, 0, 1));
 		
 		List<RoomNave> adyacentesNavigation = new ArrayList<RoomNave>();
 		adyacentesNavigation.add(RoomNave.WEAPONS);
 		adyacentesNavigation.add(RoomNave.O2);
 		adyacentesNavigation.add(RoomNave.SHIELDS);
-		nave.put(RoomNave.NAVIGATION, new InfoSala(adyacentesNavigation, 1, false));
+		nave.put(RoomNave.NAVIGATION, new InfoSala(adyacentesNavigation, 1, 0));
 		
 		List<RoomNave> adyacentesShields = new ArrayList<RoomNave>();
 		adyacentesShields.add(RoomNave.WEAPONS);
@@ -69,12 +69,12 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesShields.add(RoomNave.NAVIGATION);
 		adyacentesShields.add(RoomNave.COMMUNICATION);
 		adyacentesShields.add(RoomNave.STORAGE);
-		nave.put(RoomNave.SHIELDS, new InfoSala(adyacentesShields, 0, false));
+		nave.put(RoomNave.SHIELDS, new InfoSala(adyacentesShields, 0, 0));
 		
 		List<RoomNave> adyacentesCommunication = new ArrayList<RoomNave>();
 		adyacentesCommunication.add(RoomNave.SHIELDS);
 		adyacentesCommunication.add(RoomNave.STORAGE);
-		nave.put(RoomNave.COMMUNICATION, new InfoSala(adyacentesCommunication, 1, false));
+		nave.put(RoomNave.COMMUNICATION, new InfoSala(adyacentesCommunication, 1, 0));
 		
 		List<RoomNave> adyacentesStorage = new ArrayList<RoomNave>();
 		adyacentesStorage.add(RoomNave.CAFETERIA);
@@ -83,12 +83,12 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesStorage.add(RoomNave.COMMUNICATION);
 		adyacentesStorage.add(RoomNave.SHIELDS);
 		adyacentesStorage.add(RoomNave.LOWER_ENGINE);
-		nave.put(RoomNave.STORAGE, new InfoSala(adyacentesStorage, 1, false));
+		nave.put(RoomNave.STORAGE, new InfoSala(adyacentesStorage, 1, 0));
 		
 		List<RoomNave> adyacentesElectrical = new ArrayList<RoomNave>();
 		adyacentesElectrical.add(RoomNave.STORAGE);
 		adyacentesElectrical.add(RoomNave.LOWER_ENGINE);
-		nave.put(RoomNave.ELECTRICAL, new InfoSala(adyacentesElectrical, 0, true));
+		nave.put(RoomNave.ELECTRICAL, new InfoSala(adyacentesElectrical, 0, 1));
 		
 		List<RoomNave> adyacentesLowerEngine = new ArrayList<RoomNave>();
 		adyacentesLowerEngine.add(RoomNave.STORAGE);
@@ -96,19 +96,19 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesLowerEngine.add(RoomNave.REACTOR);
 		adyacentesLowerEngine.add(RoomNave.SECURITY);
 		adyacentesLowerEngine.add(RoomNave.UPPER_ENGINE);
-		nave.put(RoomNave.LOWER_ENGINE, new InfoSala(adyacentesLowerEngine, 0, false));
+		nave.put(RoomNave.LOWER_ENGINE, new InfoSala(adyacentesLowerEngine, 0, 0));
 		
 		List<RoomNave> adyacentesReactor = new ArrayList<RoomNave>();
 		adyacentesReactor.add(RoomNave.LOWER_ENGINE);
 		adyacentesReactor.add(RoomNave.SECURITY);
 		adyacentesReactor.add(RoomNave.UPPER_ENGINE);
-		nave.put(RoomNave.REACTOR, new InfoSala(adyacentesReactor, 0, true));
+		nave.put(RoomNave.REACTOR, new InfoSala(adyacentesReactor, 0, 1));
 		
 		List<RoomNave> adyacentesSecurity = new ArrayList<RoomNave>();
 		adyacentesSecurity.add(RoomNave.LOWER_ENGINE);
 		adyacentesSecurity.add(RoomNave.REACTOR);
 		adyacentesSecurity.add(RoomNave.UPPER_ENGINE);
-		nave.put(RoomNave.SECURITY, new InfoSala(adyacentesSecurity, 1, false));
+		nave.put(RoomNave.SECURITY, new InfoSala(adyacentesSecurity, 1, 0));
 		
 		List<RoomNave> adyacentesUpperEngine = new ArrayList<RoomNave>();
 		adyacentesUpperEngine.add(RoomNave.LOWER_ENGINE);
@@ -116,17 +116,17 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesUpperEngine.add(RoomNave.SECURITY);
 		adyacentesUpperEngine.add(RoomNave.MEDBAY);
 		adyacentesUpperEngine.add(RoomNave.CAFETERIA);
-		nave.put(RoomNave.UPPER_ENGINE, new InfoSala(adyacentesUpperEngine, 0, false));
+		nave.put(RoomNave.UPPER_ENGINE, new InfoSala(adyacentesUpperEngine, 0, 0));
 		
 		List<RoomNave> adyacentesMedbay= new ArrayList<RoomNave>();
 		adyacentesMedbay.add(RoomNave.UPPER_ENGINE);
 		adyacentesMedbay.add(RoomNave.CAFETERIA);
-		nave.put(RoomNave.MEDBAY, new InfoSala(adyacentesMedbay, 0, false));
+		nave.put(RoomNave.MEDBAY, new InfoSala(adyacentesMedbay, 0, 0));
 		
 		List<RoomNave> adyacentesAdmin= new ArrayList<RoomNave>();
 		adyacentesAdmin.add(RoomNave.CAFETERIA);
 		adyacentesAdmin.add(RoomNave.STORAGE);
-		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, 0, false));
+		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, 0, 0));
         
 	}
 	
