@@ -6,14 +6,15 @@ import java.util.Random;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import impostor.classes.DatosIniciales;
 import impostor.classes.InfoSala;
 import impostor.classes.RoomNave;
 
 public class ImpostorEnvironment  extends Environment{
 	
 	
-	public ImpostorEnvironment() {
-        this.environmentState = new ImpostorEnvironmentState();
+	public ImpostorEnvironment(DatosIniciales datosIniciales) {
+        this.environmentState = new ImpostorEnvironmentState(datosIniciales);
     }
 	
 	@Override

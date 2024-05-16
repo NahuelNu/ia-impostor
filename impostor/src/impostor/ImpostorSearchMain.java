@@ -1,13 +1,16 @@
 package impostor;
 
 import frsf.cidisi.faia.simulator.SearchBasedAgentSimulator;
+import impostor.classes.DatosIniciales;
 
 public class ImpostorSearchMain {
 
 	public static void main(String[] args) {
-		ImpostorAgent impostorAgent = new ImpostorAgent();
-        
-        ImpostorEnvironment impostorEnvironment = new ImpostorEnvironment();
+		
+		DatosIniciales datosIniciales = new DatosIniciales();
+		
+		ImpostorAgent impostorAgent = new ImpostorAgent(datosIniciales);
+        ImpostorEnvironment impostorEnvironment = new ImpostorEnvironment(datosIniciales);
         
         // Prueba de percibir
         // impostorEnvironment.getPercept();

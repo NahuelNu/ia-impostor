@@ -17,20 +17,19 @@ import impostor.actions.Eliminar;
 import impostor.actions.IrA;
 import impostor.actions.NoMove;
 import impostor.actions.Sabotear;
+import impostor.classes.DatosIniciales;
 import impostor.classes.RoomNave;
 
 
 public class ImpostorAgent extends SearchBasedAgent{
 
-	public ImpostorAgent() {
+	public ImpostorAgent(DatosIniciales datosIniciales) {
         // The Impostor Goal
         ImpostorGoal goal = new ImpostorGoal();
 
         // The Impostor Agent State
-        ImpostorAgentState impostorState = new ImpostorAgentState();
+        ImpostorAgentState impostorState = new ImpostorAgentState(datosIniciales);
         this.setAgentState(impostorState);
-
-		
 		
         Vector<SearchAction> operators = new Vector<SearchAction>();
         operators.addElement(new Eliminar());
@@ -50,7 +49,6 @@ public class ImpostorAgent extends SearchBasedAgent{
         operators.addElement(new IrA(RoomNave.STORAGE));
         operators.addElement(new IrA(RoomNave.CAFETERIA));
         operators.addElement(new NoMove());
-
 
         // Create the Problem which the Impostor will resolve
         Problem problem = new Problem(goal, impostorState, operators);

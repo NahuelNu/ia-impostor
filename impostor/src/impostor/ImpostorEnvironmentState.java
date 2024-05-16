@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import frsf.cidisi.faia.state.EnvironmentState;
+import impostor.classes.DatosIniciales;
 import impostor.classes.InfoSala;
 import impostor.classes.RoomNave;
 
@@ -19,8 +20,10 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	
 	private int activarPoderExtraSensorial;
 
-	public ImpostorEnvironmentState() {
+	public ImpostorEnvironmentState(DatosIniciales datosIniciales) {
 		super();
+		//posicion inicial y energia inicial del impostor:
+		this.setSalaActualImpostor(datosIniciales.getSalaInicialImpostor());
 		initState();
 	}
 
@@ -124,10 +127,6 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		adyacentesAdmin.add(RoomNave.CAFETERIA);
 		adyacentesAdmin.add(RoomNave.STORAGE);
 		nave.put(RoomNave.ADMIN, new InfoSala(adyacentesAdmin, 0, false));
-		
-		
-		//posicion inicial y energia inicial del impostor:
-		this.setSalaActualImpostor(RoomNave.CAFETERIA);
         
 	}
 	

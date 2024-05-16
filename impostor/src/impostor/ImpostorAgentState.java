@@ -7,7 +7,7 @@ import java.util.Map;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-
+import impostor.classes.DatosIniciales;
 import impostor.classes.InfoSala;
 import impostor.classes.RoomNave;
 
@@ -29,9 +29,9 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	// Utilizado en búsqueda para que pueda realizar la acción NoMove solo 1 vez
 	private boolean noMove;
 	
-	public ImpostorAgentState() {
+	public ImpostorAgentState(DatosIniciales datosIniciales) {
 		super();
-		this.salaActual = RoomNave.CAFETERIA;
+		this.salaActual = datosIniciales.getSalaInicialImpostor();
 		this.energiaImpostor = 20;
 		this.cantidadTripulantes = 4;
 		this.cantidadTareas = 3;
