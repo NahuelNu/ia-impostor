@@ -25,7 +25,7 @@ public class Eliminar extends SearchAction {
 			int aux = impostorState.getCantidadTripulantes();
 			impostorState.setCantidadTripulantes(aux-1);
 			
-			this.setCost(1);
+			this.setCost(0);
 			//System.out.println("ELIMINA 1 ############################");
 			return impostorState;
 		}

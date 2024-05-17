@@ -31,13 +31,16 @@ public class ImpostorAgentState extends SearchBasedAgentState{
 	
 	public ImpostorAgentState(DatosIniciales datosIniciales) {
 		super();
-		this.salaActual=datosIniciales.getSalaInicialImpostor();
-		//this.salaActual = RoomNave.STORAGE;
+		//this.salaActual=datosIniciales.getSalaInicialImpostor();
+		this.salaActual = RoomNave.STORAGE;
+		if(this.salaActual==RoomNave.STORAGE) this.pasosPorStorage=1;
+		if(this.salaActual==RoomNave.CAFETERIA) this.pasosPorCafeteria=1;
+		else this.pasosPorStorage=0;
 		this.energiaImpostor = 200;
 		this.cantidadTripulantes = 4;
 		this.cantidadTareas = 3;
 		this.pasosPorCafeteria=0;
-		this.pasosPorStorage=0;
+		
 		this.noMove=false;
 		this.costoCamino=0;
         initState();

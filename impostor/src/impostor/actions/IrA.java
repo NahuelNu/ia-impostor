@@ -61,17 +61,28 @@ public class IrA extends SearchAction {
 		impostorState.setSalaActual(ambiente);
 		
 		
-		//Para el objetivo (todas las salas en 0)
+		//Para el objetivo (todas las salas en 0) 
+		//Chequear modificaciones
 		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
-			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
+			if(impostorState.getNave().get(posAgente).getTareaSaboteable()==-1) {
+				InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
+				impostorState.getNave().put(posAgente, infoSalaNew);
+			}
+			else if(impostorState.getNave().get(posAgente).getTareaSaboteable()==1) {
+				InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,1);
+				impostorState.getNave().put(posAgente, infoSalaNew);
+			}
+		}
+		else if (impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==1 && impostorState.getNave().get(posAgente).getTareaSaboteable()==-1) {
+			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,1,0);
 			impostorState.getNave().put(posAgente, infoSalaNew);
 		}
 		
 		impostorState.setEnergiaImpostor(impostorState.getEnergiaImpostor()-1);
 		
 		if(impostorState.getNave().get(this.ambiente).getCantidadTripuntalesEnSala()>0) this.setCost(10);
-		else if(impostorState.getNave().get(this.ambiente).getTareaSaboteable()==1) this.setCost(15);
-		else this.setCost(50);
+		else if(impostorState.getNave().get(this.ambiente).getTareaSaboteable()==1) this.setCost(25);
+		else this.setCost(100);
 		
 		//System.out.println("Se mueve a "+this.ambiente+" ############################");
 		return impostorState;

@@ -14,7 +14,8 @@ public class CostFunction implements IStepCostFunction {
      */
 	@Override
 	public double calculateCost(NTree node) {
-		return node.getAction().getCost();
+		double costoAdicional = ((ImpostorAgentState) node.getAgentState()).getCantidadTripulantes()*100;
+		return node.getAction().getCost()+costoAdicional;
 	}
 
 }

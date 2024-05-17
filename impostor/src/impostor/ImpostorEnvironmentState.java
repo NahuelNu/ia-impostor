@@ -23,8 +23,8 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 	public ImpostorEnvironmentState(DatosIniciales datosIniciales) {
 		super();
 		//posicion inicial y energia inicial del impostor:
-		this.setSalaActualImpostor(datosIniciales.getSalaInicialImpostor());
-		//this.salaActualImpostor=RoomNave.STORAGE;
+		//this.setSalaActualImpostor(datosIniciales.getSalaInicialImpostor());
+		this.salaActualImpostor=RoomNave.STORAGE;
 		initState();
 	}
 
