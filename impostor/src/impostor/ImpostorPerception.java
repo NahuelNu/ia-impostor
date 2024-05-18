@@ -38,7 +38,7 @@ public class ImpostorPerception extends Perception{
 	     this.setInfoSalaActual(environmentState.getNave().get(posImpostor));
 	     //this.setEnergiaImpostor(environmentState.getEnegiaImpostor());
 	     
-	     System.out.println("------------INITPERCEPTION ESTO NO SE EJECUTA NUNCA----------");
+	     System.out.println("------------INITPERCEPTION ESTO NO SE EJECUTA NUNCA?----------");
 	}
 
 	public void setInfoSalaActual(InfoSala info) {

@@ -69,7 +69,7 @@ public class ImpostorAgent extends SearchBasedAgent{
     public Action selectAction() {
 
         // Create the search 
-        GreedySearch strategy = new GreedySearch(new Heuristic());
+    	UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
 
         /**
          * Another search strategy examples:
@@ -84,7 +84,7 @@ public class ImpostorAgent extends SearchBasedAgent{
          * IStepCostFunction costFunction = new CostFunction();
          * UniformCostSearch strategy = new UniformCostSearch(costFunction);
          * 
-         * UniformCostSearch strategy = new UniformCostSearch(new FuncionCosto());
+         * UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
          * 
          * A Star Search:
          * IStepCostFunction cost = new CostFunction();
