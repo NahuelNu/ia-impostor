@@ -24,15 +24,14 @@ public class ImpostorEnvironmentState extends EnvironmentState {
 		super();
 		//posicion inicial y energia inicial del impostor:
 		this.salaActualImpostor=datosIniciales.getSalaInicialImpostor();
-		//this.salaActualImpostor=RoomNave.STORAGE;
 		this.energiaImpostor=datosIniciales.getEnergiaInicialImpostor();
+		this.cantidadTripulantes=datosIniciales.getCantTripulantes();
 		initState();
 	}
 
 	@Override
 	public void initState() {
 		this.activarPoderExtraSensorial=1;
-		this.cantidadTripulantes = 4;
 		this.cantidadTareas = 3;
 		this.nave =  new HashMap<RoomNave, InfoSala>();
 		

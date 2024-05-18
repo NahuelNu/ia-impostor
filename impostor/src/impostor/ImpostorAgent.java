@@ -9,6 +9,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.faia.solver.search.AStarSearch;
 import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.GreedySearch;
@@ -69,8 +70,9 @@ public class ImpostorAgent extends SearchBasedAgent{
     public Action selectAction() {
 
         // Create the search 
-    	UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
-
+    	//UniformCostSearch strategy = new UniformCostSearch(new CostFunction());
+    	//GreedySearch strategy = new GreedySearch(new Heuristic());
+    	AStarSearch strategy = new AStarSearch(new CostFunction(), new Heuristic());
         /**
          * Another search strategy examples:
          * 
