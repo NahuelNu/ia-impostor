@@ -1,5 +1,8 @@
 package impostor.actions;
 
+import java.util.List;
+import java.util.Optional;
+
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
@@ -7,6 +10,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
 import impostor.ImpostorAgentState;
 import impostor.ImpostorEnvironmentState;
 import impostor.classes.RoomNave;
+import impostor.classes.Tripulante;
 
 public class Eliminar extends SearchAction {
 	
@@ -37,21 +41,29 @@ public class Eliminar extends SearchAction {
 	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
 
 		ImpostorAgentState impostorState = (ImpostorAgentState) ast;
-		ImpostorEnvironmentState enviromentState = (ImpostorEnvironmentState) est;
+		ImpostorEnvironmentState environmentState = (ImpostorEnvironmentState) est;
 
-		RoomNave posActual = enviromentState.getSalaActualImpostor();
-		int cantTripulantesEnSala=enviromentState.getNave().get(posActual).getCantidadTripuntalesEnSala();
+		RoomNave posActual = environmentState.getSalaActualImpostor();
+		int cantTripulantesEnSala=environmentState.getNave().get(posActual).getCantidadTripuntalesEnSala();
 		if(cantTripulantesEnSala>0) {
 			
-			enviromentState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
+			environmentState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
 			impostorState.getNave().get(posActual).setCantidadTripuntalesEnSala(cantTripulantesEnSala-1);
 			
-			int aux = enviromentState.getCantidadTripulantes();
+			int aux = environmentState.getCantidadTripulantes();
 			
-			enviromentState.setCantidadTripulantes(aux-1);
+			environmentState.setCantidadTripulantes(aux-1);
 			impostorState.setCantidadTripulantes(aux-1);
+			
+			//Eliminar tripulante de la lista
+			
+			List<Tripulante> tripulantes = environmentState.getTripulantes();
+			Optional<Tripulante> tripulanteAEliminar=tripulantes.stream().filter(t->t.getPosicion()==environmentState.getSalaActualImpostor()).findFirst();
+			
+			if(tripulanteAEliminar.isPresent()) tripulantes.remove(tripulanteAEliminar.get());
+			
 			//System.out.println("ELIMINA 1 REAL ############################");
-			return enviromentState;
+			return environmentState;
 		}
 		
 		return null;

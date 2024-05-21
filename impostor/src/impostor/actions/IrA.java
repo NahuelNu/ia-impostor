@@ -40,8 +40,8 @@ public class IrA extends SearchAction {
 		
 		// Si en sala posicion actual de impostor hay algún tripulante o tarea a sabotear retornar null para no moverse
 		// Ver si en búsqueda por costo uniforme hace falta. El agente debería saber elegir la mejor opción
-		//if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()>0 || impostorState.getNave().get(posAgente).getTareaSaboteable()==1) 
-		//	return null;
+//		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()>0 || impostorState.getNave().get(posAgente).getTareaSaboteable()==1) 
+//			return null;
 		
 		// Si la lista de ambientes adyacentes (a los que puede moverse) no contiene a
 		// este ambiente entonces retornar null
@@ -108,10 +108,29 @@ public class IrA extends SearchAction {
 		environmentState.setSalaActualImpostor(this.ambiente);
 		impostorState.setSalaActual(this.ambiente);
 		
-		InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
-		impostorState.getNave().put(posAgente, infoSalaNew);
-		environmentState.getNave().put(posAgente, infoSalaNew);
 		
+		//Para el objetivo (todas las salas en 0) 
+		//Chequear modificaciones
+//		if(impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==-1) {
+//			if(impostorState.getNave().get(posAgente).getTareaSaboteable()==-1) {
+//				InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
+//				impostorState.getNave().put(posAgente, infoSalaNew);
+//			}
+//			else if(impostorState.getNave().get(posAgente).getTareaSaboteable()==1) {
+//				InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,1);
+//				impostorState.getNave().put(posAgente, infoSalaNew);
+//			}
+//		}
+//		else if (impostorState.getNave().get(posAgente).getCantidadTripuntalesEnSala()==1 && impostorState.getNave().get(posAgente).getTareaSaboteable()==-1) {
+//			InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,1,0);
+//			impostorState.getNave().put(posAgente, infoSalaNew);
+//		}
+//		InfoSala infoSalaNew = new InfoSala(ambientesAdyacentes,0,0);
+//		impostorState.getNave().put(posAgente, infoSalaNew);
+//		environmentState.getNave().put(posAgente, infoSalaNew);
+		
+		if(this.ambiente==RoomNave.STORAGE) impostorState.setPasosPorStorage(1);
+		else if(this.ambiente==RoomNave.CAFETERIA) impostorState.setPasosPorCafeteria(1);
 		impostorState.setEnergiaImpostor(impostorState.getEnergiaImpostor()-1);
 		environmentState.setEnergiaImpostor(environmentState.getEnergiaImpostor()-1);
 		

@@ -65,6 +65,7 @@ public class ImpostorPerception extends Perception{
         str.append("\n");
         //str.append("Energia impostor: " + this.energiaImpostor +"\n");
         str.append("Info sala actual: " + this.infoSalaActual+"\n");
+        if(this.nave!=null) str.append("Info nave: " + this.nave+"\n");
 
         return str.toString();
     }

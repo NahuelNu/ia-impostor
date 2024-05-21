@@ -26,12 +26,10 @@ public class Heuristic implements IEstimatedCostFunction {
             InfoSala valor = nave.get(clave);
             
             if(valor.getCantidadTripuntalesEnSala()==-1) costo+=9;
-            else if(valor.getCantidadTripuntalesEnSala()==1) costo+=90;
+            else if(valor.getCantidadTripuntalesEnSala()>0) costo+=(90*valor.getCantidadTripuntalesEnSala());
             if(valor.getTareaSaboteable()==-1) costo+=10;
             else if(valor.getTareaSaboteable()==1) costo +=100;
-
         }
-		
 		return costo;
 	}
 
